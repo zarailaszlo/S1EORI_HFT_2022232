@@ -44,6 +44,26 @@ namespace S1EORI_HFT_2022232.Repository
                 .WithMany()
                 .HasForeignKey(c => c.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            var userdata = new User[]
+            {
+                new User { IdUser = 1, Username = "testuser1", Password = "testpassword1", FullName = "Test User2", Email = "test.user1@example.com", Age = 31 },
+                new User { IdUser = 2, Username = "testuser2", Password = "testpassword2", FullName = "Test User2", Email = "test.user2@example.com", Age = 32 }
+            };
+            var gitrepositorydata = new GitRepository[]
+            {
+                new GitRepository { IdGitRepository = 1, Name = "testrepo1", Visibility = "public", CreatedDate = DateTime.Now, UserId = 1 },
+                new GitRepository { IdGitRepository = 2, Name = "testrepo2", Visibility = "private", CreatedDate = DateTime.Now, UserId = 2 }
+            };
+            var commitdata = new Commit[]
+            {
+                new Commit { IdCommit = 1, Hash = "abc123", Message = "Initial commit1", CommittedDate = DateTime.Now, GitRepositoryId = 1, UserId = 1 },
+                new Commit { IdCommit = 2, Hash = "def456", Message = "Initial commit2", CommittedDate = DateTime.Now, GitRepositoryId = 1, UserId = 2 }
+            };
+
+            modelBuilder.Entity <User>().HasData(userdata);
+            modelBuilder.Entity <GitRepository>().HasData(gitrepositorydata);
+            modelBuilder.Entity <Commit>().HasData(commitdata);
             base.OnModelCreating(modelBuilder);
         }
     }
