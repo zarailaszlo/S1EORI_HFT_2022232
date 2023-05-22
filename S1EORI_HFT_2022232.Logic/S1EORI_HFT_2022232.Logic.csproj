@@ -9,8 +9,4 @@
     <ProjectReference Include="..\S1EORI_HFT_2022232.Repository\S1EORI_HFT_2022232.Repository.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Classes\" />
-  </ItemGroup>
-
 </Project>
