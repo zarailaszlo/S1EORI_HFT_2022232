@@ -49,5 +49,14 @@ namespace S1EORI_HFT_2022232.Logic.Classes
         {
             this.repo.Update(item);
         }
+        public int GetCommitCountForRepository(int repositoryId)
+        {
+            var repository = repo.Read(repositoryId);
+            if (repository == null)
+            {
+                throw new Exception($"No repository found with ID {repositoryId}");
+            }
+            return repository.Commits.Count;
+        }
     }
 }
