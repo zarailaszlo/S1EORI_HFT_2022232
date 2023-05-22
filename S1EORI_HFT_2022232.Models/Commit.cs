@@ -20,10 +20,9 @@ namespace S1EORI_HFT_2022232.Models
         public DateTime CommittedDate { get; set; }
         [ForeignKey("GitRepository")]
         public int GitRepositoryId { get; set; }
-        [NotMapped]
         public virtual GitRepository GitRepository { get; set; }
+        [ForeignKey("User")]
         public int UserId { get; set; }
-        [NotMapped]
-        public virtual User User { get; set; }
+
     }
 }

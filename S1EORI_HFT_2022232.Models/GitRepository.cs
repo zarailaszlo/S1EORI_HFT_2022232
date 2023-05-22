@@ -20,13 +20,6 @@ namespace S1EORI_HFT_2022232.Models
         public DateTime CreatedDate { get; set; }
         [ForeignKey("User")]
         public int UserId { get; set; }
-        [NotMapped]
-        public virtual User User { get; set; }
-        [NotMapped]
-        public string TemporaryData { get; set; }
-        [NotMapped]
         public virtual ICollection<Commit> Commits { get; set; }
-        [NotMapped]
-        public virtual ICollection<Milestone> Milestones { get; set; }
     }
 }

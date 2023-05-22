@@ -9,7 +9,6 @@ namespace S1EORI_HFT_2022232.Repository
         public DbSet<User> Users { get; set; }
         public DbSet<GitRepository> GitRepositorys { get; set; }
         public DbSet<Commit> Commits { get; set; }
-        public DbSet<Milestone> Milestones { get; set; }
         public AppDbContext()
         {
             Database.EnsureCreated();

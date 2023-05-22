@@ -20,7 +20,6 @@ namespace S1EORI_HFT_2022232.Models
         public string Email { get; set; }
         [Range(0, 100)]
         public int Age { get; set; }
-        [NotMapped]
         public virtual ICollection<GitRepository> GitRepositories { get; set; }
     }
 }
