@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace S1EORI_HFT_2022232.Models
 {
@@ -18,6 +19,7 @@ namespace S1EORI_HFT_2022232.Models
         [Required]
         public string Description { get; set; }
         public DateTime DueDate { get; set; }
+        [DefaultValue(false)]
         public bool IsCompleted { get; set; }
         [ForeignKey("GitRepository")]
         public int GitRepositoryId { get; set; }
