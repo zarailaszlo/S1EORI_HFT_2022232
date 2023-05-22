@@ -19,7 +19,14 @@ namespace S1EORI_HFT_2022232.Logic.Classes
 
         public void Create(GitRepository item)
         {
-            //ide kell valamilyen throw ha rossz az adat
+            if (item.Name == null)
+            {
+                throw new ArgumentException("Missing Name");
+            }
+            if (item.Visibility != "private" || item.Visibility != "public")
+            {
+                throw new ArgumentException("Invalid Visibility");
+            }
             this.repo.Create(item);
         }
 

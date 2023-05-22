@@ -19,7 +19,14 @@ namespace S1EORI_HFT_2022232.Logic.Classes
 
         public void Create(User item)
         {
-            //ide kell valamilyen throw ha rossz az adat
+            if (item.Username == null || item.Password == null || item.FullName == null || item.Email == null) 
+            {
+                throw new ArgumentException("Missing Data");
+            }
+            if (item.Age < 0 || item.Age > 100)
+            {
+                throw new ArgumentException("Invalid Age");
+            }
             this.repo.Create(item);
         }
 

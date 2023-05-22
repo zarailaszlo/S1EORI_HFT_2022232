@@ -19,7 +19,14 @@ namespace S1EORI_HFT_2022232.Logic.Classes
 
         public void Create(Commit item)
         {
-            //ide kell valamilyen throw ha rossz az adat
+            if (item.Hash == null)
+            {
+                throw new ArgumentException("Missing Hash");
+            }
+            if (item.Message == null)
+            {
+                throw new ArgumentException("Missing Message");
+            }            
             this.repo.Create(item);
         }
 
