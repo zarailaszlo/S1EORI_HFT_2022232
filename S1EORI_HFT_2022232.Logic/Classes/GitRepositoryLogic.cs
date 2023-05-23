@@ -73,5 +73,16 @@ namespace S1EORI_HFT_2022232.Logic.Classes
                             };
             return repoStats.OrderByDescending(rs => rs.CommitCount);
         }
+        public IQueryable<VisibilityGroupStatistics> GroupRepositoriesByVisibility()
+        {
+            var visibilityGroups = from repository in repo.ReadAll()
+                                   group repository by repository.Visibility into visibilityGroup
+                                   select new VisibilityGroupStatistics()
+                                   {
+                                       Visibility = visibilityGroup.Key,
+                                       RepositoryCount = visibilityGroup.Count()
+                                   };
+            return visibilityGroups;
+        }
     }
 }

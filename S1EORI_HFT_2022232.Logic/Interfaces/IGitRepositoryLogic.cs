@@ -16,5 +16,6 @@ namespace S1EORI_HFT_2022232.Logic.Interfaces
         void Update(GitRepository item);
         int GetCommitCountForRepository(int repositoryId);
         IQueryable<RepositoryStatistics> ReadRepositoryStats();
+        IQueryable<VisibilityGroupStatistics> GroupRepositoriesByVisibility();
     }
 }
