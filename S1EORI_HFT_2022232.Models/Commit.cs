@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace S1EORI_HFT_2022232.Models
 {
@@ -24,6 +25,18 @@ namespace S1EORI_HFT_2022232.Models
         [ForeignKey("User")]
         public int UserId { get; set; }
         public virtual User User { get; set; } 
+
+        public Commit(string line) 
+        {
+            string[] split = line.Split('#');
+            IdCommit = int.Parse(split[0]);
+            Hash = split[1];
+            Message = split[2];
+            string format = "yyyy-MM-dd HH:mm:ss";
+            CommittedDate = DateTime.ParseExact(split[3], format, CultureInfo.InvariantCulture);
+            GitRepositoryId = int.Parse(split[4]);
+            UserId = int.Parse(split[5]);
+        }
 
     }
 }

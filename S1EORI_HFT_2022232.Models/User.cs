@@ -21,5 +21,16 @@ namespace S1EORI_HFT_2022232.Models
         [Range(0, 100)]
         public int Age { get; set; }
         public virtual ICollection<GitRepository> GitRepositories { get; set; }
+
+        public User(string line) 
+        {
+            string[] split = line.Split('#');
+            IdUser = int.Parse(split[0]);
+            Username = split[1];
+            Password = split[2];
+            FullName = split[3];
+            Email = split[4];
+            Age = int.Parse(split[5]);
+        }
     }
 }
