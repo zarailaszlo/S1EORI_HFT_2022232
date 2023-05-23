@@ -2,7 +2,9 @@
 using S1EORI_HFT_2022232.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Numerics;
+using System.Xml.Linq;
 
 namespace S1EORI_HFT_2022232.Client
 {
@@ -11,23 +13,141 @@ namespace S1EORI_HFT_2022232.Client
         static RestService rest;
         static void Create(string entity)
         {
-            
+            if (entity == "User")
+            {
+                Console.Write("Username: ");
+                string username = Console.ReadLine();
+                Console.Write("Password: ");
+                string password = Console.ReadLine();
+                Console.Write("FullName: ");
+                string fullName = Console.ReadLine();
+                Console.Write("Email: ");
+                string email = Console.ReadLine();
+                Console.Write("Age: ");
+                int age = int.Parse(Console.ReadLine());
+                rest.Post(new User() { Username = username, Password = password, FullName = fullName, Email = email, Age = age }, "user");
+            }
+            else if (entity == "GitRepository")
+            {
+                Console.Write("Repository name: ");
+                string name = Console.ReadLine();
+                Console.Write("Visibility: (private/public)");
+                string vis = Console.ReadLine();
+                string visibility;
+                if (vis == null || vis != "private" || vis != "public")
+                {
+                    visibility = "private";
+                }
+                visibility = vis;
+                Console.WriteLine("Repository Created Date set");
+                string format = "yyyy-MM-dd HH:mm:ss";
+                DateTime createdDate = DateTime.ParseExact(DateTime.Now.ToString(), format, CultureInfo.InvariantCulture);
+                Console.Write("Repository Owner ID");
+                int userId = int.Parse(Console.ReadLine());
+                rest.Post(new GitRepository { Name = name, Visibility = visibility, CreatedDate = createdDate, UserId = userId }, "gitRepository");
+            }
+            else if (entity == "Commit")
+            {
+                Console.Write("Commit hash: ");
+                string hash = Console.ReadLine();
+
+                Console.Write("Commit message: ");
+                string message = Console.ReadLine();
+                Console.WriteLine("Created Date set");
+                string format = "yyyy-MM-dd HH:mm:ss";
+                DateTime committedDate = DateTime.ParseExact(DateTime.Now.ToString(), format, CultureInfo.InvariantCulture);
+                Console.Write("Commit RepositoryId: ");
+                int gitRepositoryId = int.Parse(Console.ReadLine());
+                Console.Write("Commit UserId: ");
+                int userId = int.Parse(Console.ReadLine());
+                rest.Post(new Commit {Hash = hash, Message = message, CommittedDate = committedDate, GitRepositoryId = gitRepositoryId, UserId = userId }, "commit");
+            }
         }
         static void List(string entity)
         {
-            
+            if (entity == "User")
+            {
+                List<User> users = rest.Get<User>("User");
+                foreach (var item in users)
+                {
+                    Console.WriteLine(item.IdUser + ": " + item.Username);
+                }
+            }
+            else if (entity == "GitRepository")
+            {
+                List<GitRepository> gitRepository = rest.Get<GitRepository>("GitRepository");
+                foreach (var item in gitRepository)
+                {
+                    Console.WriteLine(item.IdGitRepository + ": " + item.Name);
+                }
+            }
+            else if (entity == "Commit")
+            {
+                List<Commit> commits = rest.Get<Commit>("Commit");
+                foreach (var item in commits)
+                {
+                    Console.WriteLine(item.IdCommit + ": " + item.Message);
+                }
+            }
+            Console.ReadLine();
         }
         static void Update(string entity)
         {
-            
+            if (entity == "User")
+            {
+                Console.Write("Enter User's id to update: ");
+                int id = int.Parse(Console.ReadLine());
+                User one = rest.Get<User>(id, "user");
+                Console.Write($"New name [old: {one.Username}]: ");
+                string name = Console.ReadLine();
+                one.Username = name;
+                rest.Put(one, "user");
+            }
+            else if (entity == "GitRepository")
+            {
+                Console.Write("Enter GitRepository's id to update: ");
+                int id = int.Parse(Console.ReadLine());
+                GitRepository one = rest.Get<GitRepository>(id, "gitRepository");
+                Console.Write($"New name [old: {one.Name}]: ");
+                string name = Console.ReadLine();
+                one.Name = name;
+                rest.Put(one, "gitRepository");
+            }
+            else if (entity == "Commit")
+            {
+                Console.Write("Enter Commit's id to update: ");
+                int id = int.Parse(Console.ReadLine());
+                Commit one = rest.Get<Commit>(id, "commit");
+                Console.Write($"New Message [old: {one.Message}]: ");
+                string message = Console.ReadLine();
+                one.Message = message;
+                rest.Put(one, "commit");
+            }
         }
         static void Delete(string entity)
         {
-            
+            if (entity == "User")
+            {
+                Console.Write("Enter User's id to delete: ");
+                int id = int.Parse(Console.ReadLine());
+                rest.Delete(id, "user");
+            }
+            else if (entity == "GitRepository")
+            {
+                Console.Write("Enter GitRepository's id to delete: ");
+                int id = int.Parse(Console.ReadLine());
+                rest.Delete(id, "gitRepository");
+            }
+            else if (entity == "Commit")
+            {
+                Console.Write("Enter Commit's id to delete: ");
+                int id = int.Parse(Console.ReadLine());
+                rest.Delete(id, "commit");
+            }
         }
         static void Main(string[] args)
         {
-            rest = new RestService("http://localhost:58989/", "git");
+            rest = new RestService("http://localhost:58989/", "User");
 
             var userSubMenu = new ConsoleMenu(args, level:1)
                 .Add("List", () => List("User"))
