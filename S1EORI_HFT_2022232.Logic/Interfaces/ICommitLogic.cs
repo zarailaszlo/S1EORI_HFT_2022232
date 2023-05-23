@@ -15,5 +15,6 @@ namespace S1EORI_HFT_2022232.Logic.Interfaces
         IQueryable<Commit> ReadAll();
         void Update(Commit item);
         IQueryable<Commit> GetCommitsNewerThan(DateTime date);
+        IQueryable<Commit> ReadCommitsLongerThan(int length);
     }
 }
