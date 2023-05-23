@@ -15,5 +15,6 @@ namespace S1EORI_HFT_2022232.Logic.Interfaces
         IQueryable<GitRepository> ReadAll();
         void Update(GitRepository item);
         int GetCommitCountForRepository(int repositoryId);
+        IQueryable<RepositoryStatistics> ReadRepositoryStats();
     }
 }

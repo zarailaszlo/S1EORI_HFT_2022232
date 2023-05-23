@@ -12,6 +12,7 @@ namespace S1EORI_HFT_2022232.Logic.Classes
     public class GitRepositoryLogic : IGitRepositoryLogic
     {
         IRepository<GitRepository> repo;
+        private readonly UserLogic _userService;
         public GitRepositoryLogic(IRepository<GitRepository> repo)
         {
             this.repo = repo;
@@ -57,6 +58,20 @@ namespace S1EORI_HFT_2022232.Logic.Classes
                 throw new Exception($"No repository found with ID {repositoryId}");
             }
             return repository.Commits.Count;
+        }
+        public IQueryable<RepositoryStatistics> ReadRepositoryStats()
+        {
+            var repoStats = from repo in repo.ReadAll()
+                            let username = _userService.Read(repo.UserId).Username
+                            let avgCommitLength = repo.Commits.Any() ? (int)repo.Commits.Average(c => c.Message.Length) : 0
+                            select new RepositoryStatistics()
+                            {
+                                RepositoryName = repo.Name,
+                                UserName = username,
+                                CommitCount = repo.Commits.Count,
+                                AverageCommitLength = avgCommitLength
+                            };
+            return repoStats.OrderByDescending(rs => rs.CommitCount);
         }
     }
 }
