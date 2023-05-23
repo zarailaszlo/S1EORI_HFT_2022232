@@ -18,15 +18,11 @@ namespace S1EORI_HFT_2022232.Logic.Classes
         }
 
         public void Create(Commit item)
-        {
-            if (item.Hash == null)
+        {            
+            if (item.Hash.Length < 7)
             {
-                throw new ArgumentException("Missing Hash");
-            }
-            if (item.Message == null)
-            {
-                throw new ArgumentException("Missing Message");
-            }            
+                throw new ArgumentException("Hash is too short (minimum 7 character)");
+            }           
             this.repo.Create(item);
         }
 

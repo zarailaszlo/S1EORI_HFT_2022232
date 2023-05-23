@@ -19,13 +19,17 @@ namespace S1EORI_HFT_2022232.Logic.Classes
 
         public void Create(User item)
         {
-            if (item.Username == null || item.Password == null || item.FullName == null || item.Email == null) 
+            if (item.Username.Length < 2) 
             {
-                throw new ArgumentException("Missing Data");
+                throw new ArgumentException("The Username is too short");
             }
-            if (item.Age < 0 || item.Age > 100)
+            if (item.Password.Length < 8) 
             {
-                throw new ArgumentException("Invalid Age");
+                throw new ArgumentException("The Password is too short");
+            }
+            if (!item.Email.Contains("@"))
+            {
+                throw new ArgumentException("Bad email address (missing @)");
             }
             this.repo.Create(item);
         }
