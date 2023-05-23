@@ -1,5 +1,6 @@
 ﻿using S1EORI_HFT_2022232.Logic.Interfaces;
 using S1EORI_HFT_2022232.Models;
+using S1EORI_HFT_2022232.Models.Statistics;
 using S1EORI_HFT_2022232.Repository;
 using System;
 using System.Collections.Generic;

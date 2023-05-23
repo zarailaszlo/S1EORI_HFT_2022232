@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace S1EORI_HFT_2022232.Models
+namespace S1EORI_HFT_2022232.Models.Statistics
 {
     public class VisibilityGroupStatistics
     {

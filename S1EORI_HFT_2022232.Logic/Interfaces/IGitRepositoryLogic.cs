@@ -1,4 +1,5 @@
 ﻿using S1EORI_HFT_2022232.Models;
+using S1EORI_HFT_2022232.Models.Statistics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
