@@ -6,6 +6,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using S1EORI_HFT_2022232.Logic.Classes;
+using S1EORI_HFT_2022232.Logic.Interfaces;
+using S1EORI_HFT_2022232.Models;
+using S1EORI_HFT_2022232.Repository;
+using S1EORI_HFT_2022232.Repository.ModelsRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +30,16 @@ namespace S1EORI_HFT_2022232.Endpoint
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<AppDbContext>();
+
+            services.AddTransient<IRepository<User>, UserRepository>();
+            services.AddTransient<IRepository<GitRepository>,GitRepositoryRepository>();
+            services.AddTransient<IRepository<Commit>,CommitRepository>();
+
+            services.AddTransient<IUserLogic, UserLogic>();
+            services.AddTransient<IGitRepositoryLogic, GitRepositoryLogic>();
+            services.AddTransient<ICommitLogic, CommitLogic>();
+
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
