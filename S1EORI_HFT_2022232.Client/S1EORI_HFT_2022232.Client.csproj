@@ -9,4 +9,8 @@
     <ProjectReference Include="..\S1EORI_HFT_2022232.Models\S1EORI_HFT_2022232.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="ConsoleMenu-simple" Version="2.4.2" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
+  </ItemGroup>
 </Project>
