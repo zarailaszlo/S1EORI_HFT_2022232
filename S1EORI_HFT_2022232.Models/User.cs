@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace S1EORI_HFT_2022232.Models
 {
@@ -20,8 +21,11 @@ namespace S1EORI_HFT_2022232.Models
         public string Email { get; set; }
         [Range(0, 100)]
         public int Age { get; set; }
+        [JsonIgnore]
         public virtual ICollection<GitRepository> GitRepositories { get; set; }
+        public virtual ICollection<Commit> Commits { get; set; }
 
+        public User() { }
         public User(string line) 
         {
             string[] split = line.Split('#');

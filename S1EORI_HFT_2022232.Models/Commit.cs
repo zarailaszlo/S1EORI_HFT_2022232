@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
+using System.Text.Json.Serialization;
 
 namespace S1EORI_HFT_2022232.Models
 {
@@ -21,11 +22,13 @@ namespace S1EORI_HFT_2022232.Models
         public DateTime CommittedDate { get; set; }
         [ForeignKey("GitRepository")]
         public int GitRepositoryId { get; set; }
+        [JsonIgnore]
         public virtual GitRepository GitRepository { get; set; }
         [ForeignKey("User")]
         public int UserId { get; set; }
+        [JsonIgnore]
         public virtual User User { get; set; } 
-
+        public Commit() { }
         public Commit(string line) 
         {
             string[] split = line.Split('#');
@@ -36,6 +39,7 @@ namespace S1EORI_HFT_2022232.Models
             CommittedDate = DateTime.ParseExact(split[3], format, CultureInfo.InvariantCulture);
             GitRepositoryId = int.Parse(split[4]);
             UserId = int.Parse(split[5]);
+            
         }
 
     }

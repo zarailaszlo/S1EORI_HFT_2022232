@@ -22,28 +22,46 @@ namespace S1EORI_HFT_2022232.Repository
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
-                .HasMany(u => u.GitRepositories)
-                .WithOne()
-                .HasForeignKey(gr => gr.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<GitRepository>()
-                .HasMany(gr => gr.Commits)
-                .WithOne(c => c.GitRepository)
-                .HasForeignKey(c => c.GitRepositoryId)
-                .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<Commit>()
-                .HasOne(c => c.GitRepository)
-                .WithMany(gr => gr.Commits)
-                .HasForeignKey(c => c.GitRepositoryId);
+            modelBuilder.Entity<User>(user =>
+            {
+                user.HasMany(u => u.GitRepositories)
+                    .WithOne(gr => gr.User)
+                    .HasForeignKey(gr => gr.UserId)
+                    .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<Commit>()
-                .HasOne(c => c.User)
-                .WithMany()
-                .HasForeignKey(c => c.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
+                user.HasMany(u => u.Commits)
+                    .WithOne(c => c.User)
+                    .HasForeignKey(c => c.UserId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            modelBuilder.Entity<GitRepository>(gitRepo =>
+            {
+                gitRepo.HasOne(gr => gr.User)
+                    .WithMany(u => u.GitRepositories)
+                    .HasForeignKey(gr => gr.UserId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                gitRepo.HasMany(gr => gr.Commits)
+                    .WithOne(c => c.GitRepository)
+                    .HasForeignKey(c => c.GitRepositoryId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            modelBuilder.Entity<Commit>(commit =>
+            {
+                commit.HasOne(c => c.User)
+                    .WithMany(u => u.Commits)
+                    .HasForeignKey(c => c.UserId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                commit.HasOne(c => c.GitRepository)
+                    .WithMany(gr => gr.Commits)
+                    .HasForeignKey(c => c.GitRepositoryId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
 
             var userdata = new User[]
             {

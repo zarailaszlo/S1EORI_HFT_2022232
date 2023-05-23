@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
+using System.Text.Json.Serialization;
 
 namespace S1EORI_HFT_2022232.Models
 {
@@ -21,7 +22,11 @@ namespace S1EORI_HFT_2022232.Models
         public DateTime CreatedDate { get; set; }
         [ForeignKey("User")]
         public int UserId { get; set; }
+        [JsonIgnore]
+        public virtual User User { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Commit> Commits { get; set; }
+        public GitRepository() { }
         public GitRepository(string line)
         {
             string[] split = line.Split('#');
