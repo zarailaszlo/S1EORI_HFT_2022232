@@ -47,18 +47,21 @@ namespace S1EORI_HFT_2022232.Repository
 
             var userdata = new User[]
             {
-                new User { IdUser = 1, Username = "testuser1", Password = "testpassword1", FullName = "Test User2", Email = "test.user1@example.com", Age = 31 },
-                new User { IdUser = 2, Username = "testuser2", Password = "testpassword2", FullName = "Test User2", Email = "test.user2@example.com", Age = 32 }
+                new User("1#username1#password1#Full Name1#user.email1@example.com#32" ),
+                new User("2#username2#password2#Full Name2#user.email2@example.com#46")
             };
             var gitrepositorydata = new GitRepository[]
             {
-                new GitRepository { IdGitRepository = 1, Name = "testrepo1", Visibility = "public", CreatedDate = DateTime.Now, UserId = 1 },
-                new GitRepository { IdGitRepository = 2, Name = "testrepo2", Visibility = "private", CreatedDate = DateTime.Now, UserId = 2 }
+                new GitRepository ("1#Repository_No.1#private#2023-05-25 10:44:29#2"),
+                new GitRepository ("2#Repository_No.2#public#2023-04-11 10:44:29#2")
+
             };
             var commitdata = new Commit[]
             {
-                new Commit { IdCommit = 1, Hash = "abc123", Message = "Initial commit1", CommittedDate = DateTime.Now, GitRepositoryId = 1, UserId = 1 },
-                new Commit { IdCommit = 2, Hash = "def456", Message = "Initial commit2", CommittedDate = DateTime.Now, GitRepositoryId = 1, UserId = 2 }
+                new Commit("1#1mevilj#Date Iceberg Deleted#2023-05-31 10:44:29#1#2"),
+                new Commit("2#24md6qh#Jicama Iceberg Deleted#2023-05-30 10:44:29#1#2"),
+                new Commit("3#7jysq4w#Honeydew Honeydew Created#2023-06-03 10:44:29#1#2"),
+                new Commit("4#0b33tlj#Elderberry Grape Implemented#2023-05-28 10:44:29#1#2")
             };
 
             modelBuilder.Entity <User>().HasData(userdata);
