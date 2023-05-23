@@ -23,6 +23,7 @@ namespace S1EORI_HFT_2022232.Models
         public int Age { get; set; }
         [JsonIgnore]
         public virtual ICollection<GitRepository> GitRepositories { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Commit> Commits { get; set; }
 
         public User() { }

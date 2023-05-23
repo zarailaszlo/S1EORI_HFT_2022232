@@ -26,7 +26,6 @@ namespace S1EORI_HFT_2022232.Models
         public virtual GitRepository GitRepository { get; set; }
         [ForeignKey("User")]
         public int UserId { get; set; }
-        [JsonIgnore]
         public virtual User User { get; set; } 
         public Commit() { }
         public Commit(string line) 
