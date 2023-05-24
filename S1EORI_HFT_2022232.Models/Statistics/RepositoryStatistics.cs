@@ -14,7 +14,7 @@ namespace S1EORI_HFT_2022232.Models.Statistics
         public int AverageCommitLength { get; set; }
         public override string ToString()
         {
-            return $"Repository: {RepositoryName}\t|UserId: {UserId}\t|Commit Count: {CommitCount}\t|Average Commit Length: {AverageCommitLength}";
+            return $"Repository: {RepositoryName},\tUserId: {UserId},\tCommit Count: {CommitCount},\tAverage Commit Character Length: {AverageCommitLength}";
         }
     }
 

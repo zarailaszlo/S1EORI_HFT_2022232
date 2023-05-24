@@ -23,7 +23,7 @@ namespace S1EORI_HFT_2022232.Client
             Console.Write("RepositoryID: ");
             int id = int.Parse(Console.ReadLine());
             var item = rest.GetSingle<double>($"Stat/GetCommitCountForRepository?repositoryId={id}");
-            Console.WriteLine(item);
+            Console.WriteLine("Commit Count: "+item);
             Console.ReadLine();
 
         }

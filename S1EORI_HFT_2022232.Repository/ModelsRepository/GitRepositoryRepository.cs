@@ -1,5 +1,6 @@
 ﻿using S1EORI_HFT_2022232.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +18,10 @@ namespace S1EORI_HFT_2022232.Repository.ModelsRepository
         {
             return _context.GitRepositorys.FirstOrDefault(e => e.IdGitRepository == id);
 
-        }
-
+        }        
         public override void Update(GitRepository item)
         {
-            var old = Read(item.IdGitRepository);
+            GitRepository old = Read(item.IdGitRepository);
             foreach (var prop in old.GetType().GetProperties())
             {
                 prop.SetValue(old, prop.GetValue(item));

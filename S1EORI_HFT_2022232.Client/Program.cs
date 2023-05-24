@@ -98,31 +98,31 @@ namespace S1EORI_HFT_2022232.Client
             {
                 Console.Write("Enter User's id to update: ");
                 int id = int.Parse(Console.ReadLine());
-                User one = rest.Get<User>(id, "user");
+                User one = rest.Get<User>(id, "User");
                 Console.Write($"New name [old: {one.Username}]: ");
                 string name = Console.ReadLine();
-                one.Username = name;
-                rest.Put(one, "user");
+                one.Username = name;                
+                rest.Put(one, "User");
             }
             else if (entity == "GitRepository")
             {
                 Console.Write("Enter GitRepository's id to update: ");
                 int id = int.Parse(Console.ReadLine());
-                GitRepository one = rest.Get<GitRepository>(id, "gitRepository");
+                GitRepository one = rest.Get<GitRepository>(id, "GitRepository");
                 Console.Write($"New name [old: {one.Name}]: ");
                 string name = Console.ReadLine();
                 one.Name = name;
-                rest.Put(one, "gitRepository");
+                rest.Put(one, "GitRepository");
             }
             else if (entity == "Commit")
             {
                 Console.Write("Enter Commit's id to update: ");
                 int id = int.Parse(Console.ReadLine());
-                Commit one = rest.Get<Commit>(id, "commit");
+                Commit one = rest.Get<Commit>(id, "Commit");
                 Console.Write($"New Message [old: {one.Message}]: ");
                 string message = Console.ReadLine();
                 one.Message = message;
-                rest.Put(one, "commit");
+                rest.Put(one, "Commit");
             }
         }
         static void Delete(string entity)
