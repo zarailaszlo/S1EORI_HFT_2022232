@@ -25,6 +25,7 @@ namespace S1EORI_HFT_2022232.Test
         User user1;
         User user2;
 
+
         [SetUp]
         public void Init()
         {
@@ -32,7 +33,6 @@ namespace S1EORI_HFT_2022232.Test
             GitRepositoryMock = new Mock<IRepository<GitRepository>>();
             UserMock = new Mock<IRepository<User>>();
 
-            // Create first User
             user1 = new User();
             user1.IdUser = 1;
             user1.Username = "JohnDoe";
@@ -41,7 +41,6 @@ namespace S1EORI_HFT_2022232.Test
             user1.Email = "johndoe@example.com";
             user1.Age = 35;
 
-            // Create second User
             user2 = new User();
             user2.IdUser = 2;
             user2.Username = "JaneDoe";
@@ -50,7 +49,6 @@ namespace S1EORI_HFT_2022232.Test
             user2.Email = "janedoe@example.com";
             user2.Age = 30;
 
-            // Create first GitRepository
             gitRepository1 = new GitRepository();
             gitRepository1.IdGitRepository = 1;
             gitRepository1.Name = "JohnsRepository";
@@ -59,7 +57,6 @@ namespace S1EORI_HFT_2022232.Test
             gitRepository1.UserId = user1.IdUser;
             gitRepository1.User = user1;
 
-            // Create second GitRepository
             gitRepository2 = new GitRepository();
             gitRepository2.IdGitRepository = 2;
             gitRepository2.Name = "JanesRepository";
@@ -68,7 +65,6 @@ namespace S1EORI_HFT_2022232.Test
             gitRepository2.UserId = user2.IdUser;
             gitRepository2.User = user2;
 
-            // Create first Commit
             commit1 = new Commit();
             commit1.IdCommit = 1;
             commit1.Hash = "abc123";
@@ -79,7 +75,6 @@ namespace S1EORI_HFT_2022232.Test
             commit1.User = user1;
             commit1.GitRepository = gitRepository1;
 
-            // Create second Commit
             commit2 = new Commit();
             commit2.IdCommit = 2;
             commit2.Hash = "def456";
@@ -102,16 +97,169 @@ namespace S1EORI_HFT_2022232.Test
             List<Commit> commits = new List<Commit>() { commit1, commit2 };
             CommitMock.Setup(repo => repo.ReadAll()).Returns(commits.AsQueryable());
 
-            List<GitRepository> repos = new List<GitRepository>() { gitRepository1, gitRepository1 };
+            List<GitRepository> repos = new List<GitRepository>() { gitRepository1, gitRepository2 };
             GitRepositoryMock.Setup(repo => repo.ReadAll()).Returns(repos.AsQueryable());
+
+            user2.GitRepositories = new List<GitRepository>() { gitRepository1 };
+            user2.GitRepositories = new List<GitRepository>() { gitRepository2 };
 
             List<User> users = new List<User>() { user1, user2 };
             UserMock.Setup(repo => repo.ReadAll()).Returns(users.AsQueryable());
 
-            // Logic classes initialization
+            
+
             CommitLogic = new CommitLogic(CommitMock.Object);
             GitRepositoryLogic = new GitRepositoryLogic(GitRepositoryMock.Object);
             UserLogic = new UserLogic(UserMock.Object);
+        }
+        //read test
+        [Test]
+        public void ReadCommit_Test()
+        {
+            var result = CommitLogic.Read(1);
+            Assert.That(result, Is.EqualTo(commit1));
+        }
+
+        [Test]
+        public void ReadUser_Test()
+        {
+            var result = UserLogic.Read(1);
+            Assert.That(result, Is.EqualTo(user1));
+        }
+        [Test]
+        public void ReadGitRepository_Test()
+        {
+            var result = GitRepositoryLogic.Read(1);
+            Assert.That(result, Is.EqualTo(gitRepository1));
+        }
+        //readALL test
+        [Test]
+        public void ReadAllCommits_Test()
+        {
+            var result = CommitLogic.ReadAll().ToList();
+            Assert.That(result, Has.Count.EqualTo(2));
+            Assert.That(result, Has.Member(commit1));
+            Assert.That(result, Has.Member(commit2));
+        }
+
+
+        [Test]
+        public void ReadAllGitRepositories_Test()
+        {
+            var result = GitRepositoryLogic.ReadAll().ToList();
+            Assert.That(result, Has.Count.EqualTo(2));
+            Assert.That(result, Has.Member(gitRepository1));
+            Assert.That(result, Has.Member(gitRepository2));
+        }
+
+
+        [Test]
+        public void ReadAllUsers_Test()
+        {
+            var result = UserLogic.ReadAll().ToList();
+            Assert.That(result, Has.Count.EqualTo(2));
+            Assert.That(result, Has.Member(user1));
+            Assert.That(result, Has.Member(user2));
+        }
+
+        //Creat [Test]
+        public void CreateUser_Test()
+        {
+            // Create user with zero repositories
+            User newUser = new User();
+            newUser.IdUser = 3;
+            newUser.Username = "NewUser";
+            newUser.Password = "NewPassword";
+            newUser.FullName = "New User";
+            newUser.Email = "newuser@example.com";
+            newUser.Age = 25;
+
+            UserMock.Setup(repo => repo.Create(newUser));
+
+            UserLogic.Create(newUser);
+
+            UserMock.Verify(repo => repo.Create(newUser), Times.Once);
+        }
+
+        [Test]
+        public void CreateGitRepository_Test()
+        {
+            GitRepository newRepo = new GitRepository();
+            newRepo.IdGitRepository = 3;
+            newRepo.Name = "NewRepository";
+            newRepo.Visibility = "private";
+            newRepo.CreatedDate = DateTime.Now;
+            newRepo.UserId = user1.IdUser;
+            newRepo.User = user1;
+
+            GitRepositoryMock.Setup(repo => repo.Create(newRepo));
+
+            GitRepositoryLogic.Create(newRepo);
+
+            GitRepositoryMock.Verify(repo => repo.Create(newRepo), Times.Once);
+        }
+        [Test]
+        public void CreateCommit_WithTooShortHash_Test()
+        {
+            Commit newCommit = new Commit();
+            newCommit.IdCommit = 3;
+            newCommit.Hash = "ghi"; // This hash is too short
+            newCommit.Message = "New commit in NewRepository";
+            newCommit.CommittedDate = DateTime.Now;
+            newCommit.GitRepositoryId = gitRepository1.IdGitRepository;
+            newCommit.UserId = user1.IdUser;
+            newCommit.User = user1;
+            newCommit.GitRepository = gitRepository1;
+
+            CommitMock.Setup(repo => repo.Create(newCommit)).Throws(new ArgumentException("Hash is too short (minimum 7 character)"));
+            var exception = Assert.Throws<ArgumentException>(() => CommitLogic.Create(newCommit));
+            Assert.AreEqual("Hash is too short (minimum 7 character)", exception.Message);
+        }
+        [Test]
+        public void CreateCommit_Test()
+        {
+            Commit newCommit = new Commit();
+            newCommit.IdCommit = 3;
+            newCommit.Hash = "ghi75489";
+            newCommit.Message = "New commit in NewRepository";
+            newCommit.CommittedDate = DateTime.Now;
+            newCommit.GitRepositoryId = gitRepository1.IdGitRepository;
+            newCommit.UserId = user1.IdUser;
+            newCommit.User = user1;
+            newCommit.GitRepository = gitRepository1;
+
+            CommitMock.Setup(repo => repo.Create(newCommit));
+            CommitLogic.Create(newCommit);
+            CommitMock.Verify(repo => repo.Create(newCommit), Times.Once);
+        }
+        //Non-CRUD user
+        [Test]
+        public void ReadUsersWithZeroRepositories_Test()
+        {
+            // Create user with zero repositories
+            User userZeroRepo = new User();
+            userZeroRepo.IdUser = 3;
+            userZeroRepo.Username = "ZeroRepoUser";
+            userZeroRepo.Password = "ZeroRepoPassword";
+            userZeroRepo.FullName = "Zero Repo User";
+            userZeroRepo.Email = "zerorepo@example.com";
+            userZeroRepo.Age = 40;
+            userZeroRepo.GitRepositories = new List<GitRepository>();
+
+            UserMock.Setup(repo => repo.ReadAll()).Returns((new List<User>() { user1, user2, userZeroRepo }).AsQueryable());
+            UserLogic = new UserLogic(UserMock.Object);
+
+            var result = UserLogic.ReadUsersWithZeroRepositories().ToList();
+            Assert.That(result, Has.Count.EqualTo(2));
+            Assert.That(result, Has.Member(userZeroRepo));
+        }
+
+        [Test]
+        public void ReadUsersOlderThan_Test()
+        {
+            var result = UserLogic.ReadUsersOlderThan(34).ToList();
+            Assert.That(result, Has.Count.EqualTo(1));
+            Assert.That(result, Has.Member(user1));
         }
 
 

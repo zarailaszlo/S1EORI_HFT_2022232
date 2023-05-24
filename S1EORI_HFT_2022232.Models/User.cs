@@ -26,7 +26,10 @@ namespace S1EORI_HFT_2022232.Models
         [JsonIgnore]
         public virtual ICollection<Commit> Commits { get; set; }
 
-        public User() { }
+        public User() 
+        {
+            GitRepositories = new List<GitRepository>();
+        }
         public User(string line) 
         {
             string[] split = line.Split('#');
