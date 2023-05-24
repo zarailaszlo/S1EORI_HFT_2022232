@@ -45,16 +45,6 @@ namespace S1EORI_HFT_2022232.Logic.Classes
         {
             this.repo.Update(item);
         }
-        public IQueryable<Commit> GetCommitsNewerThan(DateTime date)
-        {
-            return repo.ReadAll().Where(commit => commit.CommittedDate > date);
-        }
-        public IQueryable<Commit> ReadCommitsLongerThan(int length)
-        {
-            var longCommits = from commit in repo.ReadAll()
-                              where commit.Message.Length > length
-                              select commit;
-            return longCommits;
-        }
+       
     }
 }

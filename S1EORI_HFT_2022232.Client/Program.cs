@@ -175,14 +175,9 @@ namespace S1EORI_HFT_2022232.Client
                 .Add("Exit", ConsoleMenu.Close);
             
             var nonCRUDSubMenu = new ConsoleMenu(args, level: 1)
-                .Add("GetCommitsNewerThan", () => nonCrud.GetCommitsNewerThan())
-                .Add("ReadCommitsLongerThan", () => nonCrud.ReadCommitsLongerThan())
                 .Add("GetCommitCountForRepository", () => nonCrud.GetCommitCountForRepository())
                 .Add("Repository Stats", () => nonCrud.ReadRepositoryStats())
-                .Add("#Visibility Stats", () => nonCrud.GroupRepositoriesByVisibility())
-                .Add("ReadUsersWithZeroRepositories", () => nonCrud.ReadUsersWithZeroRepositories())
-                .Add("DoesUserWithEmailExist", () => nonCrud.DoesUserWithEmailExist())
-                .Add("ReadUsersOlderThan", () => nonCrud.ReadUsersOlderThan());
+                .Add("#Visibility Stats", () => nonCrud.GroupRepositoriesByVisibility());
 
             var menu = new ConsoleMenu(args, level: 0)
                 .Add("Users", () => userSubMenu.Show())

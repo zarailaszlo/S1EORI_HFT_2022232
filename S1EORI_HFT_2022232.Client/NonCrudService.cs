@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,15 +17,6 @@ namespace S1EORI_HFT_2022232.Client
         public NonCrudService(RestService restService)
         {
             rest = restService;
-        }
-
-        public void GetCommitsNewerThan()
-        {
-
-        }
-        public void ReadCommitsLongerThan()
-        {
-
         }
         public void GetCommitCountForRepository()
         {
@@ -48,31 +40,5 @@ namespace S1EORI_HFT_2022232.Client
             }
             Console.ReadLine();
         }
-        public void ReadUsersWithZeroRepositories()
-        {
-            Console.WriteLine("User(s) With Zero Repositories");
-            var items = rest.Get<User>($"Stat/ReadUsersWithZeroRepositories");
-            foreach (var item in items)
-            {
-                Console.WriteLine(item);
-            }
-            Console.ReadLine();
-        }
-        public void DoesUserWithEmailExist()
-        {
-
-        }
-        public void ReadUsersOlderThan()
-        {
-
-        }
     }
 }
-//IQueryable<Commit> GetCommitsNewerThan(DateTime date);
-//IQueryable<Commit> ReadCommitsLongerThan(int length);
-//int GetCommitCountForRepository(int repositoryId);
-//IQueryable<RepositoryStatistics> ReadRepositoryStats();
-//IQueryable<VisibilityGroupStatistics> GroupRepositoriesByVisibility();
-//IQueryable<User> ReadUsersWithZeroRepositories();
-//bool DoesUserWithEmailExist(string email);
-//IQueryable<User> ReadUsersOlderThan(int age);
