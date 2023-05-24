@@ -59,12 +59,12 @@ namespace S1EORI_HFT_2022232.Logic.Classes
         public IQueryable<RepositoryStatistics> ReadRepositoryStats()
         {
             var repoStats = from rep in this.repo.ReadAll()
-                            let username = _userService.Read(rep.UserId).Username
+                            let userid = rep.UserId
                             let avgCommitLength = rep.Commits.Any() ? (int)rep.Commits.Average(c => c.Message.Length) : 0
                             select new RepositoryStatistics()
                             {
                                 RepositoryName = rep.Name,
-                                UserName = username,
+                                UserId = userid.ToString(),
                                 CommitCount = rep.Commits.Count,
                                 AverageCommitLength = avgCommitLength
                             };

@@ -10,5 +10,9 @@ namespace S1EORI_HFT_2022232.Models.Statistics
     {
         public string Visibility { get; set; }
         public int RepositoryCount { get; set; }
+        public override string ToString()
+        {
+            return $"Visibility: {Visibility} \tCount: {RepositoryCount}";
+        }
     }
 }

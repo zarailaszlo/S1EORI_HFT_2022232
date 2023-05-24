@@ -26,6 +26,11 @@ namespace S1EORI_HFT_2022232.Endpoint.Controllers
         {
             return gitRepositoryLogic.GroupRepositoriesByVisibility();
         }
-        
+        [HttpGet]
+        public int GetCommitCountForRepository(int repositoryId)
+        {
+            return gitRepositoryLogic.GetCommitCountForRepository(repositoryId);            
+        }
+
     }
 }
