@@ -20,7 +20,13 @@ namespace S1EORI_HFT_2022232.Client
         }
         public void GetCommitCountForRepository()
         {
-
+            Console.Write("RepositoryID: ");
+            int id = int.Parse(Console.ReadLine());
+            var items = rest.Get<GitRepository>($"Stat/GetCommitCountForRepository?repositoryId={id}");
+            foreach (var item in items)
+            {
+                Console.WriteLine(item);
+            }
         }
         public void ReadRepositoryStats()
         {
@@ -39,6 +45,26 @@ namespace S1EORI_HFT_2022232.Client
                 Console.WriteLine(item);
             }
             Console.ReadLine();
+        }
+        public void ReadUsersWithZeroRepositories()
+        {
+            Console.WriteLine("User(s) With Zero Repositories");
+            var items = rest.Get<User>($"Stat/ReadUsersWithZeroRepositories");
+            foreach (var item in items)
+            {
+                Console.WriteLine(item);
+            }
+            Console.ReadLine();
+        }
+        public void ReadUsersOlderThan()
+        {
+            Console.Write("Age: ");
+            int age = int.Parse(Console.ReadLine());
+            var items = rest.Get<User>($"Stat/ReadUsersOlderThan?age={age}");
+            foreach(var item in items)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }

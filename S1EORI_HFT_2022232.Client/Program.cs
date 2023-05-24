@@ -34,7 +34,7 @@ namespace S1EORI_HFT_2022232.Client
             {
                 Console.Write("Repository name: ");
                 string name = Console.ReadLine();
-                Console.Write("Visibility: (private/public)");
+                Console.Write("Visibility (private/public): ");
                 string vis = Console.ReadLine();
                 string visibility;
                 if (vis == null || vis != "private" || vis != "public")
@@ -43,9 +43,8 @@ namespace S1EORI_HFT_2022232.Client
                 }
                 visibility = vis;
                 Console.WriteLine("Repository Created Date set");
-                string format = "yyyy-MM-dd HH:mm:ss";
-                DateTime createdDate = DateTime.ParseExact(DateTime.Now.ToString(), format, CultureInfo.InvariantCulture);
-                Console.Write("Repository Owner ID");
+                DateTime createdDate = DateTime.Now;
+                Console.Write("Repository Owner ID: ");
                 int userId = int.Parse(Console.ReadLine());
                 rest.Post(new GitRepository { Name = name, Visibility = visibility, CreatedDate = createdDate, UserId = userId }, "gitRepository");
             }
@@ -57,8 +56,7 @@ namespace S1EORI_HFT_2022232.Client
                 Console.Write("Commit message: ");
                 string message = Console.ReadLine();
                 Console.WriteLine("Created Date set");
-                string format = "yyyy-MM-dd HH:mm:ss";
-                DateTime committedDate = DateTime.ParseExact(DateTime.Now.ToString(), format, CultureInfo.InvariantCulture);
+                DateTime committedDate = DateTime.Now;
                 Console.Write("Commit RepositoryId: ");
                 int gitRepositoryId = int.Parse(Console.ReadLine());
                 Console.Write("Commit UserId: ");
@@ -73,7 +71,7 @@ namespace S1EORI_HFT_2022232.Client
                 List<User> users = rest.Get<User>("User");
                 foreach (var item in users)
                 {
-                    Console.WriteLine(item.IdUser + ": " + item.Username);
+                    Console.WriteLine(item);
                 }
             }
             else if (entity == "GitRepository")
@@ -81,7 +79,7 @@ namespace S1EORI_HFT_2022232.Client
                 List<GitRepository> gitRepository = rest.Get<GitRepository>("GitRepository");
                 foreach (var item in gitRepository)
                 {
-                    Console.WriteLine(item.IdGitRepository + ": " + item.Name);
+                    Console.WriteLine(item);
                 }
             }
             else if (entity == "Commit")
@@ -89,7 +87,7 @@ namespace S1EORI_HFT_2022232.Client
                 List<Commit> commits = rest.Get<Commit>("Commit");
                 foreach (var item in commits)
                 {
-                    Console.WriteLine(item.IdCommit + ": " + item.Message);
+                    Console.WriteLine(item);
                 }
             }
             Console.ReadLine();
@@ -177,7 +175,9 @@ namespace S1EORI_HFT_2022232.Client
             var nonCRUDSubMenu = new ConsoleMenu(args, level: 1)
                 .Add("GetCommitCountForRepository", () => nonCrud.GetCommitCountForRepository())
                 .Add("Repository Stats", () => nonCrud.ReadRepositoryStats())
-                .Add("#Visibility Stats", () => nonCrud.GroupRepositoriesByVisibility());
+                .Add("#Visibility Stats", () => nonCrud.GroupRepositoriesByVisibility())
+                .Add("ReadUsersWithZeroRepositories", () => nonCrud.ReadUsersWithZeroRepositories())
+                .Add("ReadUsersOlderThan", () => nonCrud.ReadUsersOlderThan());
 
             var menu = new ConsoleMenu(args, level: 0)
                 .Add("Users", () => userSubMenu.Show())

@@ -36,5 +36,6 @@ namespace S1EORI_HFT_2022232.Models
             UserId = int.Parse(split[4]);
 
         }
+        public override string ToString() => $"Id: {IdGitRepository}, Name: {Name}, Visibility: {Visibility}, CreatedDate: {CreatedDate}, UserId: {UserId}";
     }
 }

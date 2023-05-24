@@ -37,5 +37,6 @@ namespace S1EORI_HFT_2022232.Models
             Email = split[4];
             Age = int.Parse(split[5]);
         }
+        public override string ToString() => $"IdUser: {IdUser}, Username: {Username}, Password: {Password}, FullName: {FullName}, Email: {Email}, Age: {Age}";
     }
 }

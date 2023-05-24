@@ -20,12 +20,15 @@ namespace S1EORI_HFT_2022232.Logic.Classes
         }
 
         public void Create(GitRepository item)
-        {            
-            if (item.Visibility != "private" || item.Visibility != "public")
+        {
+            if (item.Visibility == "private" || item.Visibility == "public")
+            {
+                this.repo.Create(item);
+            }
+            else
             {
                 throw new ArgumentException("Invalid Visibility (correct: private/public)");
             }
-            this.repo.Create(item);
         }
 
         public void Delete(int id)

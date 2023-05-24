@@ -31,20 +31,19 @@ namespace S1EORI_HFT_2022232.Endpoint.Controllers
         {
             return gitRepositoryLogic.GroupRepositoriesByVisibility();
         }
-        [HttpGet("{repositoryId}")]
+        [HttpGet]
         public int GetCommitCountForRepository([FromQuery] int repositoryId)
         {
             return gitRepositoryLogic.GetCommitCountForRepository(repositoryId);
         }
-
 
         [HttpGet]
         public IEnumerable<User> ReadUsersWithZeroRepositories()
         {
             return userLogic.ReadUsersWithZeroRepositories();
         }
-        [HttpGet("{age}")]
-        public IEnumerable<User> ReadUsersOlderThan(int age)
+        [HttpGet]
+        public IEnumerable<User> ReadUsersOlderThan([FromQuery] int age)
         {
             return userLogic.ReadUsersOlderThan(age);
         }

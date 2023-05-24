@@ -40,6 +40,7 @@ namespace S1EORI_HFT_2022232.Models
             UserId = int.Parse(split[5]);
             
         }
+        public override string ToString() => $"Id: {IdCommit}, Hash: {Hash}, Message: {Message}, CommittedDate: {CommittedDate}, GitRepositoryId: {GitRepositoryId}, UserId: {UserId}";
 
     }
 }
