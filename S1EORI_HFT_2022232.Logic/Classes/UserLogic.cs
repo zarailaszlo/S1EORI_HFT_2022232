@@ -52,6 +52,20 @@ namespace S1EORI_HFT_2022232.Logic.Classes
         public void Update(User item)
         {
             this.repo.Update(item);
-        }       
+        }
+        public IQueryable<User> ReadUsersWithZeroRepositories()
+        {
+            var usersWithZeroRepositories = from user in repo.ReadAll()
+                                            where user.GitRepositories.Count == 0
+                                            select user;
+            return usersWithZeroRepositories;
+        }
+        public IQueryable<User> ReadUsersOlderThan(int age)
+        {
+            var olderUsers = from user in repo.ReadAll()
+                             where user.Age > age
+                             select user;
+            return olderUsers;
+        }
     }
 }

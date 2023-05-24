@@ -14,5 +14,7 @@ namespace S1EORI_HFT_2022232.Logic.Interfaces
         User Read(int id);
         IQueryable<User> ReadAll();
         void Update(User item);
+        IQueryable<User> ReadUsersWithZeroRepositories();
+        IQueryable<User> ReadUsersOlderThan(int age);
     }
 }

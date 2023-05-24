@@ -14,13 +14,13 @@ namespace S1EORI_HFT_2022232.Endpoint.Controllers
     public class StatController : ControllerBase
     {
         IGitRepositoryLogic gitRepositoryLogic;
-        //ICommitLogic commitLogic;
-        //IUserLogic userLogic;
-        public StatController(IGitRepositoryLogic gitRepositoryLogic)
+        IUserLogic userLogic;
+
+        public StatController(IGitRepositoryLogic gitRepositoryLogic, IUserLogic userLogic)
         {
             this.gitRepositoryLogic = gitRepositoryLogic;
+            this.userLogic = userLogic;
         }
-        //gitRepositoryLogic non curd
         [HttpGet]
         public IEnumerable<RepositoryStatistics> ReadRepositoryStats()
         {
@@ -30,6 +30,24 @@ namespace S1EORI_HFT_2022232.Endpoint.Controllers
         public IEnumerable<VisibilityGroupStatistics> GroupRepositoriesByVisibility()
         {
             return gitRepositoryLogic.GroupRepositoriesByVisibility();
-        }        
+        }
+        [HttpGet("{repositoryId}")]
+        public int GetCommitCountForRepository([FromQuery] int repositoryId)
+        {
+            return gitRepositoryLogic.GetCommitCountForRepository(repositoryId);
+        }
+
+
+        [HttpGet]
+        public IEnumerable<User> ReadUsersWithZeroRepositories()
+        {
+            return userLogic.ReadUsersWithZeroRepositories();
+        }
+        [HttpGet("{age}")]
+        public IEnumerable<User> ReadUsersOlderThan(int age)
+        {
+            return userLogic.ReadUsersOlderThan(age);
+        }
+
     }
 }
