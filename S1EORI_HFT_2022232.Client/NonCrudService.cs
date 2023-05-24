@@ -22,11 +22,10 @@ namespace S1EORI_HFT_2022232.Client
         {
             Console.Write("RepositoryID: ");
             int id = int.Parse(Console.ReadLine());
-            var items = rest.Get<GitRepository>($"Stat/GetCommitCountForRepository?repositoryId={id}");
-            foreach (var item in items)
-            {
-                Console.WriteLine(item);
-            }
+            var item = rest.GetSingle<double>($"Stat/GetCommitCountForRepository?repositoryId={id}");
+            Console.WriteLine(item);
+            Console.ReadLine();
+
         }
         public void ReadRepositoryStats()
         {
@@ -65,6 +64,7 @@ namespace S1EORI_HFT_2022232.Client
             {
                 Console.WriteLine(item);
             }
+            Console.ReadLine();
         }
     }
 }

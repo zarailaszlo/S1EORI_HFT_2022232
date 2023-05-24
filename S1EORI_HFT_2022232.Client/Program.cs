@@ -173,11 +173,13 @@ namespace S1EORI_HFT_2022232.Client
                 .Add("Exit", ConsoleMenu.Close);
             
             var nonCRUDSubMenu = new ConsoleMenu(args, level: 1)
-                .Add("GetCommitCountForRepository", () => nonCrud.GetCommitCountForRepository())
+                .Add("Repository Commit Count", () => nonCrud.GetCommitCountForRepository())
                 .Add("Repository Stats", () => nonCrud.ReadRepositoryStats())
-                .Add("#Visibility Stats", () => nonCrud.GroupRepositoriesByVisibility())
-                .Add("ReadUsersWithZeroRepositories", () => nonCrud.ReadUsersWithZeroRepositories())
-                .Add("ReadUsersOlderThan", () => nonCrud.ReadUsersOlderThan());
+                .Add("Visibility Stats", () => nonCrud.GroupRepositoriesByVisibility())
+                .Add("Users With Zero Repositories", () => nonCrud.ReadUsersWithZeroRepositories())
+                .Add("Users Older Than", () => nonCrud.ReadUsersOlderThan())
+                .Add("Exit", ConsoleMenu.Close);
+
 
             var menu = new ConsoleMenu(args, level: 0)
                 .Add("Users", () => userSubMenu.Show())
