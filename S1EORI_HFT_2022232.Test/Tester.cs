@@ -52,7 +52,7 @@ namespace S1EORI_HFT_2022232.Test
             gitRepository1 = new GitRepository();
             gitRepository1.IdGitRepository = 1;
             gitRepository1.Name = "JohnsRepository";
-            gitRepository1.Visibility = "Public";
+            gitRepository1.Visibility = "public";
             gitRepository1.CreatedDate = DateTime.Now;
             gitRepository1.UserId = user1.IdUser;
             gitRepository1.User = user1;
@@ -60,7 +60,7 @@ namespace S1EORI_HFT_2022232.Test
             gitRepository2 = new GitRepository();
             gitRepository2.IdGitRepository = 2;
             gitRepository2.Name = "JanesRepository";
-            gitRepository2.Visibility = "Private";
+            gitRepository2.Visibility = "private";
             gitRepository2.CreatedDate = DateTime.Now;
             gitRepository2.UserId = user2.IdUser;
             gitRepository2.User = user2;
@@ -96,6 +96,9 @@ namespace S1EORI_HFT_2022232.Test
 
             List<Commit> commits = new List<Commit>() { commit1, commit2 };
             CommitMock.Setup(repo => repo.ReadAll()).Returns(commits.AsQueryable());
+
+            gitRepository1.Commits = new List<Commit>() { commit1 };
+            gitRepository2.Commits = new List<Commit>() { commit2 };
 
             List<GitRepository> repos = new List<GitRepository>() { gitRepository1, gitRepository2 };
             GitRepositoryMock.Setup(repo => repo.ReadAll()).Returns(repos.AsQueryable());
@@ -261,7 +264,39 @@ namespace S1EORI_HFT_2022232.Test
             Assert.That(result, Has.Count.EqualTo(1));
             Assert.That(result, Has.Member(user1));
         }
+        //Non-CRUD Repository
+        [Test]
+        public void ReadRepositoryStats_Test()
+        {
+            var result = GitRepositoryLogic.ReadRepositoryStats().ToList();
 
+            Assert.That(result, Has.Count.EqualTo(2));
 
+            var repo1Stats = result.FirstOrDefault(s => s.RepositoryName == "JohnsRepository");
+            Assert.IsNotNull(repo1Stats);
+            Assert.That(repo1Stats.UserId, Is.EqualTo("1"));
+            Assert.That(repo1Stats.CommitCount, Is.EqualTo(1));
+            Assert.That(repo1Stats.AverageCommitLength, Is.EqualTo("Initial commit in John's repository".Length));
+
+            var repo2Stats = result.FirstOrDefault(s => s.RepositoryName == "JanesRepository");
+            Assert.IsNotNull(repo2Stats);
+            Assert.That(repo2Stats.UserId, Is.EqualTo("2"));
+            Assert.That(repo2Stats.CommitCount, Is.EqualTo(1));
+            Assert.That(repo2Stats.AverageCommitLength, Is.EqualTo("Initial commit in Jane's repository".Length));
+        }
+        [Test]
+        public void GroupRepositoriesByVisibility_Test()
+        {
+            var result = GitRepositoryLogic.GroupRepositoriesByVisibility().ToList();
+            Assert.That(result, Has.Count.EqualTo(2));
+
+            var publicGroup = result.FirstOrDefault(s => s.Visibility == "public");
+            Assert.IsNotNull(publicGroup);
+            Assert.That(publicGroup.RepositoryCount, Is.EqualTo(1));
+
+            var privateGroup = result.FirstOrDefault(s => s.Visibility == "private");
+            Assert.IsNotNull(privateGroup);
+            Assert.That(privateGroup.RepositoryCount, Is.EqualTo(1));
+        }
     }
 }
