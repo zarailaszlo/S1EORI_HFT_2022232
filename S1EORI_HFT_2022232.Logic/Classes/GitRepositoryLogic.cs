@@ -58,17 +58,17 @@ namespace S1EORI_HFT_2022232.Logic.Classes
         }
         public IQueryable<RepositoryStatistics> ReadRepositoryStats()
         {
-            var repoStats = from repo in repo.ReadAll()
-                            let username = _userService.Read(repo.UserId).Username
-                            let avgCommitLength = repo.Commits.Any() ? (int)repo.Commits.Average(c => c.Message.Length) : 0
+            var repoStats = from rep in this.repo.ReadAll()
+                            let username = _userService.Read(rep.UserId).Username
+                            let avgCommitLength = rep.Commits.Any() ? (int)rep.Commits.Average(c => c.Message.Length) : 0
                             select new RepositoryStatistics()
                             {
-                                RepositoryName = repo.Name,
+                                RepositoryName = rep.Name,
                                 UserName = username,
-                                CommitCount = repo.Commits.Count,
+                                CommitCount = rep.Commits.Count,
                                 AverageCommitLength = avgCommitLength
                             };
-            return repoStats.OrderByDescending(rs => rs.CommitCount);
+            return repoStats;
         }
         public IQueryable<VisibilityGroupStatistics> GroupRepositoriesByVisibility()
         {

@@ -1,8 +1,10 @@
 ﻿using ConsoleTools;
 using S1EORI_HFT_2022232.Models;
+using S1EORI_HFT_2022232.Models.Statistics;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;
 
@@ -11,6 +13,7 @@ namespace S1EORI_HFT_2022232.Client
     internal class Program
     {
         static RestService rest;
+        //CrudService
         static void Create(string entity)
         {
             if (entity == "User")
@@ -148,6 +151,7 @@ namespace S1EORI_HFT_2022232.Client
         static void Main(string[] args)
         {
             rest = new RestService("http://localhost:58989/", "User");
+            NonCrudService nonCrud = new NonCrudService(rest);
 
             var userSubMenu = new ConsoleMenu(args, level:1)
                 .Add("List", () => List("User"))
@@ -169,11 +173,22 @@ namespace S1EORI_HFT_2022232.Client
                 .Add("Delete", () => Delete("Commit"))
                 .Add("Update", () => Update("Commit"))
                 .Add("Exit", ConsoleMenu.Close);
+            
+            var nonCRUDSubMenu = new ConsoleMenu(args, level: 1)
+                .Add("GetCommitsNewerThan", () => nonCrud.GetCommitsNewerThan())
+                .Add("ReadCommitsLongerThan", () => nonCrud.ReadCommitsLongerThan())
+                .Add("GetCommitCountForRepository", () => nonCrud.GetCommitCountForRepository())
+                .Add("Repository Stats", () => nonCrud.ReadRepositoryStats())
+                .Add("#Visibility Stats", () => nonCrud.GroupRepositoriesByVisibility())
+                .Add("ReadUsersWithZeroRepositories", () => nonCrud.ReadUsersWithZeroRepositories())
+                .Add("DoesUserWithEmailExist", () => nonCrud.DoesUserWithEmailExist())
+                .Add("ReadUsersOlderThan", () => nonCrud.ReadUsersOlderThan());
 
             var menu = new ConsoleMenu(args, level: 0)
                 .Add("Users", () => userSubMenu.Show())
                 .Add("GitRepositories", () => gitRepositorySubMenu.Show())
                 .Add("Commits", () => commitSubMenu.Show())
+                .Add("Non-CRUD", () => nonCRUDSubMenu.Show())
                 .Add("Exit", ConsoleMenu.Close);
            
             menu.Show();
