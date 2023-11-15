@@ -3,11 +3,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vms="clr-namespace:S1EORI_HFT_2022232.WpfClient.ViewModels"
         xmlns:local="clr-namespace:S1EORI_HFT_2022232.WpfClient"
         mc:Ignorable="d"
         Title="NoNCRUDWindow" Height="450" Width="800"
         WindowStartupLocation="CenterScreen">
-    <Grid>
-        
+    <Window.DataContext>
+        <vms:NoNCRUDWindowViewModel />
+    </Window.DataContext>
+    <Grid Background="DarkRed">
+        <StackPanel HorizontalAlignment="Center">
+            <Button Content="Get Commit Count For Repository" Command="{Binding GetCommitCountForRepositoryCommand}" Margin="10" Width="300" Height="60" Background="White" Foreground="Black" FontSize="18" BorderBrush="Red" BorderThickness="3"/>
+            <Button Content="Read Repository Stats" Command="{Binding ReadRepositoryStatsCommand}" Margin="10" Width="300" Height="60" Background="White" Foreground="Black" FontSize="18" BorderBrush="Red" BorderThickness="3"/>
+            <Button Content="Group Repositories By Visibility" Command="{Binding GroupRepositoriesByVisibilityCommand}" Margin="10" Width="300" Height="60" Background="White" Foreground="Black" FontSize="18" BorderBrush="Red" BorderThickness="3"/>
+            <Button Content="Read Users With Zero Repositories" Command="{Binding ReadUsersWithZeroRepositoriesCommand}" Margin="10" Width="300" Height="60" Background="White" Foreground="Black" FontSize="18" BorderBrush="Red" BorderThickness="3"/>
+            <Button Content="Read Users Older Than" Command="{Binding ReadUsersOlderThanCommand}" Margin="10" Width="300" Height="60" Background="White" Foreground="Black" FontSize="18" BorderBrush="Red" BorderThickness="3"/>
+        </StackPanel>
     </Grid>
 </Window>

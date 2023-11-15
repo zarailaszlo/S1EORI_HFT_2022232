@@ -1,0 +1,20 @@
+﻿<Window x:Class="S1EORI_HFT_2022232.WpfClient.NonCrudwpf.ReadUsersOlderThanWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:S1EORI_HFT_2022232.WpfClient.NonCrudwpf"
+        mc:Ignorable="d"
+        Title="ReadUsersOlderThanWindow" Height="300" Width="400"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <StackPanel Margin="10">
+            <Label Content="Enter Age:"/>
+            <TextBox x:Name="txtAge" Text="" Margin="5"/>
+            <Button Content="Get Users" Command="{Binding GetUsersOlderThanCommand}" Margin="5"/>
+            <ListView x:Name="lvUsersOlderThan" Margin="5">
+                <!-- Define ListView columns here -->
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Window>
