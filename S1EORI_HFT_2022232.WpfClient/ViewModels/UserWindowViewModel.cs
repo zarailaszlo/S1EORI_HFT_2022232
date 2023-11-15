@@ -70,35 +70,28 @@ namespace S1EORI_HFT_2022232.WpfClient.ViewModels
         {
             if (!IsInDesignMode)
             {
-                Users = new RestCollection<User>("http://localhost:58988/", "User", "hub");
-                //GitRepository = new RestCollection<GitRepository>("http://localhost:58988/", "???", "hub");
-                //Commit = new RestCollection<Commit>("http://localhost:58988/", "???", "hub");
+                Users = new RestCollection<User>("http://localhost:58988/", "user", "hub");
+                //GitRepository = new RestCollection<GitRepository>("http://localhost:58988/", "GitRepository", "hub");
+                //Commit = new RestCollection<Commit>("http://localhost:58988/", "Commit", "hub");
 
                 CreateUserCommand = new RelayCommand(() =>
                 {
                     Users.Add(new User()
                     {
-                        //IdUser = SelectedUser.IdUser,
+                        IdUser = SelectedUser.IdUser,
                         Username = SelectedUser.Username,
                         Password = SelectedUser.Password,
                         FullName = SelectedUser.FullName,
                         Email = SelectedUser.Email,
                         Age = SelectedUser.Age
-                    });
-                    Thread.Sleep(170);
-                    //User.Update(User.First());
+                    });                    
                 });
-
+                //nem működik
                 UpdateUserCommand = new RelayCommand(() =>
                 {
                     try
                     {
-                        Users.Update(new User()
-                        {
-                            IdUser = SelectedUser.IdUser,
-                            Username = SelectedUser.Username,
-                            Age = SelectedUser.Age
-                        });
+                        Users.Update(SelectedUser);
                     }
                     catch (ArgumentException ex)
                     {

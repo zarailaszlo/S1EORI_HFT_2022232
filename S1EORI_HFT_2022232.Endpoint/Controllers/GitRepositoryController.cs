@@ -51,8 +51,9 @@ namespace S1EORI_HFT_2022232.Endpoint.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var repoToDelete = this.logic.Read(id);
             this.logic.Delete(id);
-            this.hub.Clients.All.SendAsync("GitRepositoryDeleted", id);
+            this.hub.Clients.All.SendAsync("GitRepositoryDeleted", repoToDelete);
         }
     }
 }

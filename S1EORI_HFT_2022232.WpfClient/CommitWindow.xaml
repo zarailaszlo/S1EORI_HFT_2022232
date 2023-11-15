@@ -3,10 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vms="clr-namespace:S1EORI_HFT_2022232.WpfClient.ViewModels"
         xmlns:local="clr-namespace:S1EORI_HFT_2022232.WpfClient"
         mc:Ignorable="d"
         Title="CommitWindow" Height="450" Width="800"
         WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <vms:CommitWindowViewModel />
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -18,7 +22,7 @@
         <ListBox Grid.Column="0" ItemsSource="{Binding Commits}" SelectedItem="{Binding SelectedCommit}" Background="#FFFACD" Margin="10">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Label Content="{Binding Hash}" Margin="5"/>
+                    <Label Content="{Binding Message}" Margin="5"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

@@ -50,8 +50,9 @@ namespace S1EORI_HFT_2022232.Endpoint.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var commitToDelete = this.logic.Read(id);
             this.logic.Delete(id);
-            this.hub.Clients.All.SendAsync("CommitDeleted", id);
+            this.hub.Clients.All.SendAsync("CommitDeleted", commitToDelete);
         }
     }
 }

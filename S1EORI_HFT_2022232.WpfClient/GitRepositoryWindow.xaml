@@ -3,10 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vms="clr-namespace:S1EORI_HFT_2022232.WpfClient.ViewModels"
         xmlns:local="clr-namespace:S1EORI_HFT_2022232.WpfClient"
         mc:Ignorable="d"
         Title="GitRepositoryWindow" Height="450" Width="800"
         WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <vms:GitRepositoryWindowViewModel />
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -36,7 +40,7 @@
             <TextBox Text="{Binding SelectedGitRepository.Name}" Margin="5" Padding="2"/>
 
             <Label Content="Visibility:" FontWeight="Bold"/>
-            <ComboBox SelectedItem="{Binding SelectedGitRepository.Visibility}" Margin="5">
+            <ComboBox Text="{Binding SelectedGitRepository.Visibility}" Margin="5">
                 <ComboBoxItem Content="private"/>
                 <ComboBoxItem Content="public"/>
             </ComboBox>
