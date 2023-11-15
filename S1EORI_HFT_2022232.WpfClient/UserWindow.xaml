@@ -4,10 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:S1EORI_HFT_2022232.WpfClient"
+        xmlns:vms="clr-namespace:S1EORI_HFT_2022232.WpfClient.ViewModels"
         mc:Ignorable="d"
         Title="UserWindow" Height="450" Width="800"
         WindowStartupLocation="CenterScreen">
-    
+    <Window.DataContext>
+        <vms:UserWindowViewModel />
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -15,23 +18,20 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Left Section: User List -->
-        <ListBox Grid.Column="0" ItemsSource="{Binding User}" SelectedItem="{Binding SelectedUser}" Background="#D0E8F2" Margin="10">
+        <ListBox Grid.Column="0" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" Background="#D0E8F2" Margin="10">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Label Content="{Binding Name}" Margin="5"/>
+                    <Label Content="{Binding Username}" Margin="5"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <!-- Middle Section: Buttons -->
         <StackPanel Grid.Column="1" VerticalAlignment="Stretch" Background="#E8F4FD" Margin="10">
             <Button Content="Create" Command="{Binding CreateUserCommand}" Margin="10" Padding="10" Background="#3A6EA5" Foreground="White" BorderBrush="Transparent"/>
             <Button Content="Update" Command="{Binding UpdateUserCommand}" Margin="10" Padding="10" Background="#3A6EA5" Foreground="White" BorderBrush="Transparent"/>
             <Button Content="Delete" Command="{Binding DeleteUserCommand}" Margin="10" Padding="10" Background="#3A6EA5" Foreground="White" BorderBrush="Transparent"/>
         </StackPanel>
 
-        <!-- Right Section: User Details -->
         <StackPanel Grid.Column="2" Margin="10" Background="#D0E8F2">
             <Label Content="Username:" FontWeight="Bold"/>
             <TextBox Text="{Binding SelectedUser.Username}" Margin="5" Padding="2"/>

@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using S1EORI_HFT_2022232.Endpoint.Services;
 using S1EORI_HFT_2022232.Logic.Interfaces;
 using S1EORI_HFT_2022232.Models;
 using System.Collections.Generic;
@@ -12,10 +14,12 @@ namespace S1EORI_HFT_2022232.Endpoint.Controllers
     public class GitRepositoryController : ControllerBase
     {
         IGitRepositoryLogic logic;
+        IHubContext<SignalRHub> hub;
 
-        public GitRepositoryController(IGitRepositoryLogic logic)
+        public GitRepositoryController(IGitRepositoryLogic logic, IHubContext<SignalRHub> hub)
         {
             this.logic = logic;
+            this.hub = hub;
         }
 
         [HttpGet]
@@ -34,18 +38,21 @@ namespace S1EORI_HFT_2022232.Endpoint.Controllers
         public void Create([FromBody] GitRepository value)
         {
             this.logic.Create(value);
+            this.hub.Clients.All.SendAsync("GitRepositoryCreated", value);
         }
 
         [HttpPut]
         public void Update([FromBody] GitRepository value)
         {
             this.logic.Update(value);
+            this.hub.Clients.All.SendAsync("GitRepositoryUpdated", value);
         }
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
             this.logic.Delete(id);
+            this.hub.Clients.All.SendAsync("GitRepositoryDeleted", id);
         }
     }
 }

@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using S1EORI_HFT_2022232.Endpoint.Services;
 using S1EORI_HFT_2022232.Logic.Classes;
 using S1EORI_HFT_2022232.Logic.Interfaces;
 using S1EORI_HFT_2022232.Models;
@@ -42,6 +43,7 @@ namespace S1EORI_HFT_2022232.Endpoint
             services.AddTransient<IGitRepositoryLogic, GitRepositoryLogic>();
             services.AddTransient<ICommitLogic, CommitLogic>();
 
+            services.AddSignalR();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -69,12 +71,18 @@ namespace S1EORI_HFT_2022232.Endpoint
             }));
 
             app.UseRouting();
-
+            app.UseCors(x =>
+                x.AllowCredentials()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .WithOrigins("http://localhost:58988")
+            );
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }

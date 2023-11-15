@@ -6,8 +6,8 @@
 
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="1.1.0" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\S1EORI_HFT_2022232.Logic\S1EORI_HFT_2022232.Logic.csproj" />
     <ProjectReference Include="..\S1EORI_HFT_2022232.Models\S1EORI_HFT_2022232.Models.csproj" />
