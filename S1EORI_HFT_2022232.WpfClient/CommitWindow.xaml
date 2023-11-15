@@ -1,0 +1,51 @@
+﻿<Window x:Class="S1EORI_HFT_2022232.WpfClient.CommitWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:S1EORI_HFT_2022232.WpfClient"
+        mc:Ignorable="d"
+        Title="CommitWindow" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left Section: Commit List -->
+        <ListBox Grid.Column="0" ItemsSource="{Binding Commits}" SelectedItem="{Binding SelectedCommit}" Background="#FFFACD" Margin="10">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Hash}" Margin="5"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <!-- Middle Section: Buttons -->
+        <StackPanel Grid.Column="1" VerticalAlignment="Stretch" Background="#FFF9C4" Margin="10">
+            <Button Content="Create" Command="{Binding CreateCommitCommand}" Margin="10" Padding="10" Background="#FFC107" Foreground="White" BorderBrush="Transparent"/>
+            <Button Content="Update" Command="{Binding UpdateCommitCommand}" Margin="10" Padding="10" Background="#FFC107" Foreground="White" BorderBrush="Transparent"/>
+            <Button Content="Delete" Command="{Binding DeleteCommitCommand}" Margin="10" Padding="10" Background="#FFC107" Foreground="White" BorderBrush="Transparent"/>
+        </StackPanel>
+
+        <!-- Right Section: Commit Details -->
+        <StackPanel Grid.Column="2" Margin="10" Background="#FFFACD">
+            <Label Content="Hash:" FontWeight="Bold"/>
+            <TextBox Text="{Binding SelectedCommit.Hash}" Margin="5" Padding="2"/>
+
+            <Label Content="Message:" FontWeight="Bold"/>
+            <TextBox Text="{Binding SelectedCommit.Message}" Margin="5" Padding="2"/>
+
+            <Label Content="Committed Date:" FontWeight="Bold"/>
+            <TextBox Text="{Binding SelectedCommit.CommittedDate}" Margin="5" Padding="2" IsEnabled="False"/>
+
+            <Label Content="Git Repository ID:" FontWeight="Bold"/>
+            <TextBox Text="{Binding SelectedCommit.GitRepositoryId}" Margin="5" Padding="2"/>
+
+            <Label Content="User ID:" FontWeight="Bold"/>
+            <TextBox Text="{Binding SelectedCommit.UserId}" Margin="5" Padding="2"/>
+        </StackPanel>
+    </Grid>
+</Window>

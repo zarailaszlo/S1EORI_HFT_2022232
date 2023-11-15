@@ -148,7 +148,7 @@ namespace S1EORI_HFT_2022232.Client
         }
         static void Main(string[] args)
         {
-            rest = new RestService("http://localhost:58989/", "User");
+            rest = new RestService("http://localhost:58988/", "User");
             NonCrudService nonCrud = new NonCrudService(rest);
 
             var userSubMenu = new ConsoleMenu(args, level:1)
