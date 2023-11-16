@@ -50,6 +50,8 @@
 
             <Label Content="User ID:" FontWeight="Bold"/>
             <TextBox Text="{Binding SelectedCommit.UserId}" Margin="5" Padding="2"/>
+            <Label Content="Commit ID:" FontWeight="Bold"/>
+            <TextBox Text="{Binding SelectedCommit.IdCommit}" Margin="5" Padding="2"/>
         </StackPanel>
     </Grid>
 </Window>

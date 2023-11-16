@@ -23,9 +23,10 @@ namespace S1EORI_HFT_2022232.Repository.ModelsRepository
         public override void Update(Commit item)
         {
             Commit old = Read(item.IdCommit);
-            var properties = typeof(Commit).GetProperties().Where(
-                p => p.CanWrite &&
-                !typeof(ICollection).IsAssignableFrom(p.PropertyType)
+            var properties = typeof(Commit)
+                .GetProperties()
+                .Where(p => p.CanWrite && !typeof(ICollection)
+                .IsAssignableFrom(p.PropertyType)
             );
 
             foreach (var prop in properties)

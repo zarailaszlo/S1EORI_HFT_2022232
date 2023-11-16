@@ -25,9 +25,6 @@ namespace S1EORI_HFT_2022232.WpfClient.ViewModels
         }
 
         public RestCollection<User> Users { get; set; }
-        //public RestCollection<GitRepository> GitRepository { get; set; }
-        //public RestCollection<Commit> Commit { get; set; }
-
         private User selectedUser;
         public User SelectedUser
         {
@@ -36,7 +33,6 @@ namespace S1EORI_HFT_2022232.WpfClient.ViewModels
             {
                 if (value != null)
                 {
-                    //SetProperty(ref selectedUser, new User()
                     selectedUser = new User()
                     {
                         IdUser = value.IdUser,
@@ -71,9 +67,7 @@ namespace S1EORI_HFT_2022232.WpfClient.ViewModels
             if (!IsInDesignMode)
             {
                 Users = new RestCollection<User>("http://localhost:58988/", "user", "hub");
-                //GitRepository = new RestCollection<GitRepository>("http://localhost:58988/", "GitRepository", "hub");
-                //Commit = new RestCollection<Commit>("http://localhost:58988/", "Commit", "hub");
-
+                
                 CreateUserCommand = new RelayCommand(() =>
                 {
                     Users.Add(new User()
@@ -86,7 +80,6 @@ namespace S1EORI_HFT_2022232.WpfClient.ViewModels
                         Age = SelectedUser.Age
                     });                    
                 });
-                //nem működik
                 UpdateUserCommand = new RelayCommand(() =>
                 {
                     try

@@ -18,15 +18,33 @@ namespace S1EORI_HFT_2022232.Repository.ModelsRepository
         {
             return _context.GitRepositorys.FirstOrDefault(e => e.IdGitRepository == id);
 
-        }        
+        }
         public override void Update(GitRepository item)
         {
             GitRepository old = Read(item.IdGitRepository);
-            foreach (var prop in old.GetType().GetProperties())
+
+            var itemType = item.GetType();
+            foreach (var prop in typeof(GitRepository).GetProperties())
             {
-                prop.SetValue(old, prop.GetValue(item));
+                var itemProp = itemType.GetProperty(prop.Name);
+                if (itemProp != null)
+                {
+                    var newValue = itemProp.GetValue(item);
+                    prop.SetValue(old, newValue);
+                }
             }
+
             _context.SaveChanges();
         }
+        //ez nem működik
+        //public override void Update(GitRepository item)
+        //{
+        //    GitRepository old = Read(item.IdGitRepository);
+        //    foreach (var prop in old.GetType().GetProperties())
+        //    {
+        //        prop.SetValue(old, prop.GetValue(item));
+        //    }
+        //    _context.SaveChanges();
+        //}        
     }
 }

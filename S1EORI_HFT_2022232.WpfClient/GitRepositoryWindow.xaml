@@ -50,6 +50,9 @@
 
             <Label Content="User ID:" FontWeight="Bold"/>
             <TextBox Text="{Binding SelectedGitRepository.UserId}" Margin="5" Padding="2"/>
+            <Label Content="Repository ID:" FontWeight="Bold"/>
+            <TextBox Text="{Binding SelectedGitRepository.IdGitRepository}" Margin="5" Padding="2"/>
+
         </StackPanel>
     </Grid>
 </Window>

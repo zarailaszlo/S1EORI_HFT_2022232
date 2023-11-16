@@ -47,6 +47,8 @@
 
             <Label Content="Age:" FontWeight="Bold"/>
             <TextBox Text="{Binding SelectedUser.Age}" Margin="5" Padding="2"/>
+            <Label Content="User ID:" FontWeight="Bold"/>
+            <TextBox Text="{Binding SelectedUser.IdUser}" Margin="5" Padding="2"/>
         </StackPanel>
     </Grid>
 </Window>

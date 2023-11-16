@@ -24,7 +24,10 @@ namespace S1EORI_HFT_2022232.Repository.ModelsRepository
         {
             User old = Read(item.IdUser);
 
-            var properties = typeof(User).GetProperties().Where(p => p.CanWrite && !typeof(ICollection).IsAssignableFrom(p.PropertyType));
+            var properties = typeof(User)
+                .GetProperties()
+                .Where(p => p.CanWrite && !typeof(ICollection)
+                .IsAssignableFrom(p.PropertyType));
 
             foreach (var prop in properties)
             {
