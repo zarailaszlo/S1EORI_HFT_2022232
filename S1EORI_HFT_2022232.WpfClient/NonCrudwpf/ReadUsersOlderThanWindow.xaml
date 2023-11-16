@@ -7,13 +7,22 @@
         mc:Ignorable="d"
         Title="ReadUsersOlderThanWindow" Height="300" Width="400"
         WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <local:NonCrudViewModel />
+    </Window.DataContext>
     <Grid>
         <StackPanel Margin="10">
             <Label Content="Enter Age:"/>
-            <TextBox x:Name="txtAge" Text="" Margin="5"/>
-            <Button Content="Get Users" Command="{Binding GetUsersOlderThanCommand}" Margin="5"/>
-            <ListView x:Name="lvUsersOlderThan" Margin="5">
-                <!-- Define ListView columns here -->
+            <TextBox x:Name="txtAge" PreviewTextInput="TextBox_PreviewTextInput" Text="{Binding UserAge, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <Button Content="Get Users" Command="{Binding ReadUsersOlderThanCommand, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <ListView ItemsSource="{Binding Users5}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <TextBlock Text="{Binding Username}" FontWeight="Bold" Margin="5"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListView>
         </StackPanel>
     </Grid>

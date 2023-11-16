@@ -7,11 +7,13 @@
         mc:Ignorable="d"
         Title="GroupRepositoriesByVisibilityWindow" Height="300" Width="400"
         WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <local:NonCrudViewModel />
+    </Window.DataContext>
     <Grid>
         <StackPanel Margin="10">
-            <Button Content="Group By Visibility" Command="{Binding GroupByVisibilityCommand}" Margin="5"/>
-            <ListView x:Name="lvGroupedRepositories" Margin="5">
-                <!-- Define ListView columns here -->
+            <Button Content="Group By Visibility" Command="{Binding GroupRepositoriesByVisibilityCommand}" Margin="5"/>
+            <ListView ItemsSource="{Binding VisibilityGroupStatistics}">
             </ListView>
         </StackPanel>
     </Grid>

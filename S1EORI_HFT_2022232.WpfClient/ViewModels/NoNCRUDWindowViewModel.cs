@@ -7,16 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using RelayCommand = Microsoft.Toolkit.Mvvm.Input.RelayCommand;
 
 namespace S1EORI_HFT_2022232.WpfClient.ViewModels
 {
     public class NoNCRUDWindowViewModel : ObservableRecipient
     {
-        public ICommand GetCommitCountForRepositoryCommand { get; }
-        public ICommand ReadRepositoryStatsCommand { get; }
-        public ICommand GroupRepositoriesByVisibilityCommand { get; }
-        public ICommand ReadUsersWithZeroRepositoriesCommand { get; }
-        public ICommand ReadUsersOlderThanCommand { get; }
+        public ICommand GetCommitCountForRepositoryCommand { get; set; }
+        public ICommand ReadRepositoryStatsCommand { get; set; }
+        public ICommand GroupRepositoriesByVisibilityCommand { get; set; }
+        public ICommand ReadUsersWithZeroRepositoriesCommand { get; set; }
+        public ICommand ReadUsersOlderThanCommand { get; set; }
 
         public NoNCRUDWindowViewModel()
         {

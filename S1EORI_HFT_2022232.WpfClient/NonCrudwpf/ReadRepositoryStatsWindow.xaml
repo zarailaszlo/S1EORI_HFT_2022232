@@ -7,11 +7,13 @@
         mc:Ignorable="d"
         Title="ReadRepositoryStatsWindow" Height="300" Width="800"
         WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <local:NonCrudViewModel />
+    </Window.DataContext>
     <Grid>
         <StackPanel Margin="10">
             <Button Content="Get Repository Stats" Command="{Binding ReadRepositoryStatsCommand}" Margin="5"/>
-            <ListView x:Name="lvRepositoryStats" Margin="5">
-                <!-- Define ListView columns here -->
+            <ListView ItemsSource="{Binding RepositoryStatistics}">
             </ListView>
         </StackPanel>
     </Grid>

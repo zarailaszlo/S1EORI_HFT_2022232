@@ -7,12 +7,15 @@
         mc:Ignorable="d"
         Title="GetCommitCountForRepositoryWindow" Height="200" Width="400"
         WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <local:NonCrudViewModel />
+    </Window.DataContext>
     <Grid>
         <StackPanel Margin="10">
             <Label Content="Enter Repository ID:"/>
-            <TextBox x:Name="txtRepositoryId" Text="" Margin="5"/>
+            <TextBox x:Name="txtRepositoryId" PreviewTextInput="TextBox_PreviewTextInput" Text="{Binding RepositoryId, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
             <Button Content="Get Commit Count" Command="{Binding GetCommitCountCommand}" Margin="5"/>
-            <TextBlock x:Name="txtCommitCount" Margin="5"/>
+            <TextBlock x:Name="txtCommitCount" Text="{Binding CommitCount}" Margin="5"/>
         </StackPanel>
     </Grid>
 </Window>
