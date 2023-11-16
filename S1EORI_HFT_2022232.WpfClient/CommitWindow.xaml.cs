@@ -23,5 +23,10 @@ namespace S1EORI_HFT_2022232.WpfClient
         {
             InitializeComponent();
         }
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !e.Text.All(char.IsDigit);
+        }
+
     }
 }

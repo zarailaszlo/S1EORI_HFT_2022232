@@ -21,7 +21,15 @@
         <ListBox Grid.Column="0" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" Background="#D0E8F2" Margin="10">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Label Content="{Binding Username}" Margin="5"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{Binding Username}" FontWeight="Bold" Margin="5" Grid.Column="0"/>
+                        <TextBlock Text="{Binding Email}" Margin="5" Grid.Column="1"/>
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
@@ -46,9 +54,9 @@
             <TextBox Text="{Binding SelectedUser.Email}" Margin="5" Padding="2"/>
 
             <Label Content="Age:" FontWeight="Bold"/>
-            <TextBox Text="{Binding SelectedUser.Age}" Margin="5" Padding="2"/>
+            <TextBox PreviewTextInput="TextBox_PreviewTextInput" Text="{Binding SelectedUser.Age}" Margin="5" Padding="2"/>
             <Label Content="User ID:" FontWeight="Bold"/>
-            <TextBox Text="{Binding SelectedUser.IdUser}" Margin="5" Padding="2"/>
+            <TextBox PreviewTextInput="TextBox_PreviewTextInput" Text="{Binding SelectedUser.IdUser}" Margin="5" Padding="2"/>
         </StackPanel>
     </Grid>
 </Window>

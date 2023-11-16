@@ -31,7 +31,6 @@ namespace S1EORI_HFT_2022232.WpfClient.ViewModels
             {
                 if (value != null)
                 {
-                    //SetProperty(ref selectedCommit, new Commit()
                     selectedCommit = new Commit()
                     {
                         IdCommit = value.IdCommit,
@@ -66,7 +65,7 @@ namespace S1EORI_HFT_2022232.WpfClient.ViewModels
         {
             if (!IsInDesignMode)
             {
-                Commits = new RestCollection<Commit>("http://localhost:58988/", "Commit", "hub");
+                Commits = new RestCollection<Commit>("http://localhost:58986/", "Commit", "hub");
 
                 CreateCommitCommand = new RelayCommand(() =>
                 {
@@ -80,7 +79,6 @@ namespace S1EORI_HFT_2022232.WpfClient.ViewModels
                         UserId = SelectedCommit.UserId,
                     });
                 });
-                //nem működik
                 UpdateCommitCommand = new RelayCommand(() =>
                 {
                     try

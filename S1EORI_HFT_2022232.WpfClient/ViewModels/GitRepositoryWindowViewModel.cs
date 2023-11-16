@@ -20,6 +20,8 @@ namespace S1EORI_HFT_2022232.WpfClient.ViewModels
             get { return errorMessage; }
             set { SetProperty(ref errorMessage, value); }
         }
+        
+
         public RestCollection<GitRepository> GitRepositories { get; set; }
         private GitRepository selectedGitRepository;
         public GitRepository SelectedGitRepository
@@ -62,7 +64,7 @@ namespace S1EORI_HFT_2022232.WpfClient.ViewModels
         {
             if (!IsInDesignMode)
             {
-                GitRepositories = new RestCollection<GitRepository>("http://localhost:58988/", "GitRepository", "hub");
+                GitRepositories = new RestCollection<GitRepository>("http://localhost:58986/", "GitRepository", "hub");
                 CreateGitRepositoryCommand = new RelayCommand(() =>
                 {
                     GitRepositories.Add(new GitRepository()
@@ -75,7 +77,6 @@ namespace S1EORI_HFT_2022232.WpfClient.ViewModels
                                                 
                     });
                 });
-                //nem működik
                 UpdateGitRepositoryCommand = new RelayCommand(() =>
                 {
                     try

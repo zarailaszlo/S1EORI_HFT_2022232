@@ -18,23 +18,36 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Left Section: Git Repository List -->
         <ListBox Grid.Column="0" ItemsSource="{Binding GitRepositories}" SelectedItem="{Binding SelectedGitRepository}" Background="#E8F4E2" Margin="10">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Label Content="{Binding Name}" Margin="5"/>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="5" Padding="5" Width="250">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                <TextBlock Text="User ID: " FontWeight="Bold"/>
+                                <TextBlock Text="{Binding UserId}" Margin="5 0"/>
+                                <TextBlock Text=" | Visibility: " FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Visibility}" Margin="5 0"/>
+                            </StackPanel>
+
+                            <TextBlock Text="{Binding Name}" Margin="5" Grid.Row="1"/>
+                        </Grid>
+                    </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <!-- Middle Section: Buttons -->
         <StackPanel Grid.Column="1" VerticalAlignment="Stretch" Background="#E2F4E8" Margin="10">
             <Button Content="Create" Command="{Binding CreateGitRepositoryCommand}" Margin="10" Padding="10" Background="#3A8E75" Foreground="White" BorderBrush="Transparent"/>
             <Button Content="Update" Command="{Binding UpdateGitRepositoryCommand}" Margin="10" Padding="10" Background="#3A8E75" Foreground="White" BorderBrush="Transparent"/>
             <Button Content="Delete" Command="{Binding DeleteGitRepositoryCommand}" Margin="10" Padding="10" Background="#3A8E75" Foreground="White" BorderBrush="Transparent"/>
         </StackPanel>
 
-        <!-- Right Section: Git Repository Details -->
         <StackPanel Grid.Column="2" Margin="10" Background="#E8F4E2">
             <Label Content="Repository Name:" FontWeight="Bold"/>
             <TextBox Text="{Binding SelectedGitRepository.Name}" Margin="5" Padding="2"/>
@@ -49,9 +62,9 @@
             <TextBox Text="{Binding SelectedGitRepository.CreatedDate}" Margin="5" Padding="2" IsEnabled="False"/>
 
             <Label Content="User ID:" FontWeight="Bold"/>
-            <TextBox Text="{Binding SelectedGitRepository.UserId}" Margin="5" Padding="2"/>
+            <TextBox Text="{Binding SelectedGitRepository.UserId}" PreviewTextInput="TextBox_PreviewTextInput" Margin="5" Padding="2"/>
             <Label Content="Repository ID:" FontWeight="Bold"/>
-            <TextBox Text="{Binding SelectedGitRepository.IdGitRepository}" Margin="5" Padding="2"/>
+            <TextBox Text="{Binding SelectedGitRepository.IdGitRepository}" PreviewTextInput="TextBox_PreviewTextInput" Margin="5" Padding="2"/>
 
         </StackPanel>
     </Grid>

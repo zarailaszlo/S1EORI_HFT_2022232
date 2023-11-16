@@ -66,7 +66,7 @@ namespace S1EORI_HFT_2022232.WpfClient.ViewModels
         {
             if (!IsInDesignMode)
             {
-                Users = new RestCollection<User>("http://localhost:58988/", "user", "hub");
+                Users = new RestCollection<User>("http://localhost:58986/", "user", "hub");
                 
                 CreateUserCommand = new RelayCommand(() =>
                 {
