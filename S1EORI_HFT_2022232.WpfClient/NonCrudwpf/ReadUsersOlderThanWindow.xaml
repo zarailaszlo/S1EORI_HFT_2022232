@@ -15,11 +15,16 @@
             <Label Content="Enter Age:"/>
             <TextBox x:Name="txtAge" PreviewTextInput="TextBox_PreviewTextInput" Text="{Binding UserAge, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
             <Button Content="Get Users" Command="{Binding ReadUsersOlderThanCommand, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
-            <ListView ItemsSource="{Binding Users5}">
+            <ListView ItemsSource="{Binding Users5}" Height="153">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>
-                            <TextBlock Text="{Binding Username}" FontWeight="Bold" Margin="5"/>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding Username, StringFormat='Name: {0}'}" FontWeight="Bold" Margin="5" Grid.Column="0"/>
+                            <TextBlock Text="{Binding Age, StringFormat='Age: {0}'}" Margin="5" Grid.Column="1"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

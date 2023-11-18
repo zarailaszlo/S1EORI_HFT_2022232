@@ -13,7 +13,7 @@
     <Grid>
         <StackPanel Margin="10">
             <Button Content="Get Repository Stats" Command="{Binding ReadRepositoryStatsCommand}" Margin="5"/>
-            <ListView ItemsSource="{Binding RepositoryStatistics}">
+            <ListView ItemsSource="{Binding RepositoryStatistics}" Height="197">
             </ListView>
         </StackPanel>
     </Grid>

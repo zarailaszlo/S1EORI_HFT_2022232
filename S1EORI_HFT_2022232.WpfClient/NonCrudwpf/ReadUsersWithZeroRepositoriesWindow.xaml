@@ -14,7 +14,7 @@
         <StackPanel Margin="10">
             <Label Content="Get Users With Zero Repositories"/>
             <Button Content="Get Users" Command="{Binding ReadUsersWithZeroRepositoriesCommand}" Margin="5"/>
-            <ListView ItemsSource="{Binding Users4}" Height="183">
+            <ListView ItemsSource="{Binding Users4}" Height="166">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>  

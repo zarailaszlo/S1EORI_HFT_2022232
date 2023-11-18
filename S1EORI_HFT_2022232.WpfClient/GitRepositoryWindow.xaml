@@ -60,6 +60,10 @@
 
             <Label Content="Created Date:" FontWeight="Bold"/>
             <TextBox Text="{Binding SelectedGitRepository.CreatedDate}" Margin="5" Padding="2" IsEnabled="False"/>
+            <Button Content="Set to Current Date" 
+                    Command="{Binding SetCurrentDateCommand}"
+                    Margin="5" Padding="5"
+                    Background="SeaGreen" Foreground="White" />
 
             <Label Content="User ID:" FontWeight="Bold"/>
             <TextBox Text="{Binding SelectedGitRepository.UserId}" PreviewTextInput="TextBox_PreviewTextInput" Margin="5" Padding="2"/>

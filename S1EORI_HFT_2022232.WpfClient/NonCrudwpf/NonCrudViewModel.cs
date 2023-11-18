@@ -52,7 +52,7 @@ namespace S1EORI_HFT_2022232.WpfClient.NonCrudwpf
                 Users5 = new ObservableCollection<User>();
                 RepositoryStatistics = new ObservableCollection<RepositoryStatistics>();
                 VisibilityGroupStatistics = new ObservableCollection<VisibilityGroupStatistics>();
-
+                //1
                 GetCommitCountCommand = new RelayCommand(() =>
                 {
                     CommitCount = _nonCrudService.GetCommitCountForRepository(RepositoryId);

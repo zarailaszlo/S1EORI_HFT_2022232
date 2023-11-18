@@ -56,6 +56,10 @@
 
             <Label Content="Committed Date:" FontWeight="Bold"/>
             <TextBox Text="{Binding SelectedCommit.CommittedDate}" Margin="5" Padding="2" IsEnabled="False"/>
+            <Button Content="Set to Current Date" 
+                    Command="{Binding SetCurrentDateCommand}"
+                    Margin="5" Padding="5"
+                    Background="DarkOrange" Foreground="White" />
 
             <Label Content="Git Repository ID:" FontWeight="Bold"/>
             <TextBox PreviewTextInput="TextBox_PreviewTextInput" Text="{Binding SelectedCommit.GitRepositoryId}" Margin="5" Padding="2"/>

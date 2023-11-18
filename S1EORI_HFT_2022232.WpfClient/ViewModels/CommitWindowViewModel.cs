@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
+using System.Globalization;
 
 namespace S1EORI_HFT_2022232.WpfClient.ViewModels
 {
@@ -61,12 +62,14 @@ namespace S1EORI_HFT_2022232.WpfClient.ViewModels
         public ICommand DeleteCommitCommand { get; set; }
 
         public ICommand UpdateCommitCommand { get; set; }
+
+        public ICommand SetCurrentDateCommand { get; set; }
         public CommitWindowViewModel()
         {
             if (!IsInDesignMode)
             {
                 Commits = new RestCollection<Commit>("http://localhost:58986/", "Commit", "hub");
-
+                SetCurrentDateCommand = new RelayCommand(SetCurrentDate);
                 CreateCommitCommand = new RelayCommand(() =>
                 {
                     Commits.Add(new Commit()
@@ -101,6 +104,14 @@ namespace S1EORI_HFT_2022232.WpfClient.ViewModels
                 }
                 );
                 SelectedCommit = new Commit();
+            }
+        }
+        public void SetCurrentDate()
+        {
+            if (SelectedCommit != null)
+            {
+                SelectedCommit.CommittedDate = DateTime.Now;
+                OnPropertyChanged(nameof(SelectedCommit)); 
             }
         }
     }   

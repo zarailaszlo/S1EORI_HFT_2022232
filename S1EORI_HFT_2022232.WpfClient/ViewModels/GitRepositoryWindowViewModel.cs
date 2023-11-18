@@ -56,15 +56,15 @@ namespace S1EORI_HFT_2022232.WpfClient.ViewModels
             }
         }
         public ICommand CreateGitRepositoryCommand { get; set; }
-
         public ICommand DeleteGitRepositoryCommand { get; set; }
-
         public ICommand UpdateGitRepositoryCommand { get; set; }
+        public ICommand SetCurrentDateCommand { get; set; }
         public GitRepositoryWindowViewModel()
         {
             if (!IsInDesignMode)
             {
                 GitRepositories = new RestCollection<GitRepository>("http://localhost:58986/", "GitRepository", "hub");
+                SetCurrentDateCommand = new RelayCommand(SetCurrentDate);
                 CreateGitRepositoryCommand = new RelayCommand(() =>
                 {
                     GitRepositories.Add(new GitRepository()
@@ -99,6 +99,14 @@ namespace S1EORI_HFT_2022232.WpfClient.ViewModels
                 }
                 );
                 SelectedGitRepository = new GitRepository();
+            }
+        }
+        private void SetCurrentDate()
+        {
+            if (SelectedGitRepository != null)
+            {
+                SelectedGitRepository.CreatedDate = DateTime.Now;
+                OnPropertyChanged(nameof(SelectedGitRepository)); 
             }
         }
 
