@@ -62,6 +62,7 @@ th {
         color: #333;
     }
     #formdiv input[type="password"],
+    #formdiv input[type="number"],
     #formdiv input[type="text"] {
         width: 100%;
         padding: 8px;
@@ -105,7 +106,7 @@ th {
         cursor: pointer;
     }
         #formdiv button:hover {
-            background-color: #4cae4c;
+            background-color: darkblue;
         }
 .password-container {
     display: flex;
@@ -136,6 +137,7 @@ table button {
     }
 
     #updateFormDiv input[type="text"],
+    #updateFormDiv input[type="number"],
     #updateFormDiv input[type="password"] {
         width: 100%;
         padding: 8px;
@@ -157,5 +159,5 @@ table button {
     }
 
         #updateFormDiv button:hover {
-            background-color: #4cae4c;
+            background-color: darkblue;
         }

@@ -4,10 +4,24 @@
     <meta charset="utf-8" />
     <title>Git Repository UI</title>
     <link rel="stylesheet" href="gitrepositoryStyle.css" />
-
 </head>
 <body>
     <button onclick="backtomain()" class="back-to-main-button">Back To Main Page</button>
+    <br /><br />
+    <h1>Git Repository Manager</h1>
+    <div id="formdiv">
+        <h2>Add Repository</h2>
+        <label>Name: </label>
+        <input type="text" id="Name" />
+        <label>Visibility: </label>
+        <input type="text" id="Visibility" />
+        <label>Created Date (yyyy-MM-dd): </label>
+        <input type="date" id="CreatedDate" />
+        <label>User ID: </label>
+        <input type="number" id="UserId" />
+        <button type="button" onclick="createRepository()">Add Repository</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
     <script src="gitrepositoryScript.js"></script>
 </body>
 </html>
