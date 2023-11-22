@@ -1,12 +1,13 @@
 ﻿body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 10px;
     background-color: #f0f0f0;
+    text-align: center;
+    padding: 20px;
 }
 
 .back-to-main-button {
-    padding: 10px 20px;
+    padding: 10px;
     background-color: #808080;
     color: white;
     font-size: 16px;
@@ -17,6 +18,7 @@
     position: absolute;
     top: 10px;
     left: 10px;
+    width: 250px; /* Set a specific width */
 }
 
     .back-to-main-button:hover {
@@ -25,4 +27,60 @@
 
     .back-to-main-button:focus {
         outline: none;
+    }
+
+h1 {
+    color: #d32f2f;
+}
+
+.input-group, .button-group {
+    margin-bottom: 15px;    
+    justify-content: center;
+    align-items: center;
+}
+
+input, button {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+    width: 250px;
+}
+
+input {
+    background-color: white;
+    color: black;
+}
+
+button {
+    background-color: #d32f2f;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    button:hover {
+        background-color: #b71c1c;
+    }
+
+
+#statisticsResults {
+    margin: 20px auto;
+    width: 80%;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+    #statisticsResults ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    #statisticsResults li {
+        background: #eee;
+        margin-bottom: 5px;
+        padding: 10px;
+        border-radius: 4px;
     }

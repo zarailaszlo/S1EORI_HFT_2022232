@@ -8,6 +8,38 @@
 </head>
 <body>
     <button onclick="backtomain()" class="back-to-main-button">Back To Main Page</button>
+    <br /><br /><br />
+    <h1>Statistics</h1>
+
+    <div class="input-group">
+        <input type="number" id="ageInput" placeholder="Enter age">
+        <button onclick="ReadUsersOlderThan(document.getElementById('ageInput').value)">Read Users Older Than</button>
+    </div>
+    <br />
+    <div class="input-group">
+        <input type="text" id="repositoryIdInput" placeholder="Enter repository ID">
+        <button onclick="GetCommitCountForRepository(document.getElementById('repositoryIdInput').value)">Get Commit Count For Repository</button>
+    </div>
+    <br />
+    <div class="button-group">
+        <button onclick="ReadRepositoryStats()">Read Repository Stats</button>
+        <br />
+        <br />
+        <button onclick="GroupRepositoriesByVisibility()">Group Repositories By Visibility</button>
+        <br />
+        <br />
+        <button onclick="ReadUsersWithZeroRepositories()">Read Users With Zero Repositories</button>
+    </div>
+    <br />
+    <div id="statisticsResults" style="display: none;">
+        <div id="statTitle"></div>
+        <div id="usersOlderThanResults" style="display: none;"></div>
+        <div id="commitCountResults" style="display: none;"></div>
+        <div id="repositoryStatsResults" style="display: none;"></div>
+        <div id="groupedReposResults" style="display: none;"></div>
+        <div id="usersWithZeroReposResults" style="display: none;"></div>
+    </div>
+
     <script src="noncrudScript.js"></script>
 </body>
 </html>
