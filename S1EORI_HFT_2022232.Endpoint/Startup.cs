@@ -71,12 +71,13 @@ namespace S1EORI_HFT_2022232.Endpoint
             }));
 
             app.UseRouting();
-            app.UseCors(x =>
-                x.AllowCredentials()
+            app.UseCors(x => x
+                .AllowCredentials()
                 .AllowAnyMethod()
                 .AllowAnyHeader()
-                .WithOrigins("http://localhost:58988")
+                .WithOrigins("http://localhost:52742")
             );
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
