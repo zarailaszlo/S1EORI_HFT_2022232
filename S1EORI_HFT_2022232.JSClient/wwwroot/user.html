@@ -8,6 +8,66 @@
 </head>
 <body>
     <button onclick="backtomain()" class="back-to-main-button">Back To Main Page</button>
-    <script src="userScript.js"></script>
+    <br />
+    <br />
+    <h1>User Page</h1>
+    <div id="formdiv">
+        <h2>Add Form</h2>
+        <br />
+        <label>Username: </label>
+        <input type="text" id="Username" value="testUser" />
+        <label>Password: </label>
+        <div class="password-container">
+            <input type="password" id="Password" value="testPassword" />
+            <button type="button" onclick="togglePassword()" class="toggle-password">Show/Hide</button>
+        </div>
+        <label>Full Name: </label>
+        <input type="text" id="FullName" value="Test User" />
+        <label>Email: </label>
+        <input type="text" id="Email" value="testuser@fuk.com" />
+        <label>Age: </label>
+        <input type="text" id="Age" value="10" />
+
+        <button type="button" onclick="create()">Add User</button>
+    </div>
+    <br /><br />
+          <div id="updateFormDiv" style="display:none;">
+              <h2>Update Form</h2>
+              <br />
+              <label>UserID: </label>
+              <input type="text" id="UserID" />
+              <label>Username: </label>
+              <input type="text" id="UsernameUpdate" />
+              <label>Password: </label>
+              <input type="password" id="PasswordUpdate" />
+              <label>Full Name: </label>
+              <input type="text" id="FullNameUpdate" />
+              <label>Email: </label>
+              <input type="text" id="EmailUpdate" />
+              <label>Age: </label>
+              <input type="text" id="AgeUpdate" />
+
+              <button type="button" onclick="updateUser()">Update User</button>
+          </div>
+
+              <br />
+              <table>
+                  <thead>
+                      <tr>
+                          <th>ID</th>
+                          <th>Username</th>
+                          <th>Password</th>
+                          <th>Full Name</th>
+                          <th>Email</th>
+                          <th>Age</th>
+                          <th>Action</th>
+                      </tr>
+                  </thead>
+                  <tbody id="userTable1">
+                      <!-- User data will be inserted here -->
+                  </tbody>
+              </table>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+              <script src="userScript.js"></script>
 </body>
 </html>
