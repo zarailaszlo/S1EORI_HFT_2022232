@@ -14,13 +14,59 @@
         <label>Name: </label>
         <input type="text" id="Name" />
         <label>Visibility: </label>
-        <input type="text" id="Visibility" />
-        <label>Created Date (yyyy-MM-dd): </label>
-        <input type="date" id="CreatedDate" />
+        <select id="Visibility">
+            <option value="private">private</option>
+            <option value="public">public</option>
+        </select>
+        <br />        <br />
+        <label>Created Date: </label>
+        <input type="datetime-local" id="CreatedDate" />
         <label>User ID: </label>
         <input type="number" id="UserId" />
-        <button type="button" onclick="createRepository()">Add Repository</button>
+        <button type="button" onclick="create()">Add Repository</button>
     </div>
+
+    <br />
+    <br />
+    <div id="updateFormDiv" style="display: none;">
+        <h2>Update Form</h2>
+        <br />
+        <label>Repository ID: </label>
+        <input type="number" id="GitRepositoryID" />
+        <label>Name: </label>
+        <input type="text" id="NameUpdate" />
+        <label>Visibility: </label>
+        <select id="VisibilityUpdate">
+            <option value="private">private</option>
+            <option value="public">public</option>
+        </select>
+        <br />        
+        <br />
+        <label>Created Date: </label>
+        <input type="datetime-local" id="CreatedDateUpdate" />
+        <label>User ID: </label>
+        <input type="number" id="UserIdUpdate" />
+        <button type="button" onclick="updateGitRepository()">Update User</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Visibility</th>
+                <th>Created Date</th>
+                <th>User ID</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="repositoryTable">
+            <!-- User data will be inserted here -->
+        </tbody>
+    </table>
+
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
     <script src="gitrepositoryScript.js"></script>
 </body>
