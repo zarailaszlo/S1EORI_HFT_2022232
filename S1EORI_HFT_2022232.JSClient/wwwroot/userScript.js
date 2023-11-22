@@ -9,6 +9,15 @@ getData();
 setupSignalR();
 
 
+function fillData() {
+    document.getElementById('Username').value = 'testUsername';
+    document.getElementById('Password').value = 'testpasstest';
+    document.getElementById('FullName').value = 'Test FullName';
+    document.getElementById('Email').value = 'email@cim.hu';
+    document.getElementById('Age').value = 22;
+}
+
+
 function setupSignalR() {
     connection = new signalR.HubConnectionBuilder()
         .withUrl('http://localhost:58986/hub')
@@ -74,7 +83,7 @@ function display(tableId) {
 
 
 
-function togglePassword() {
+function togglePassword() {    
     var passwordInput = document.getElementById('Password');
     var type = passwordInput.type === 'password' ? 'text' : 'password';
     passwordInput.type = type;

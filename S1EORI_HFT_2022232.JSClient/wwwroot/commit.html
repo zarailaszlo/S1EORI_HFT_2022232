@@ -8,20 +8,22 @@
 </head>
 <body>
     <button onclick="backtomain()" class="back-to-main-button">Back To Main Page</button>
-    <br /><br />
+    <br />
+    <br />
     <h1>Commit Manager</h1>
     <div id="formdiv">
+    <button onclick="fillData()" class="test-data-button">Add test data</button>
         <h2>Add Commit</h2>
         <label>Hash: </label>
-        <input type="text" id="Hash" />
+        <input type="text" id="Hash" value="" />
         <label>Message: </label>
-        <input type="text" id="Message" />
+        <input type="text" id="Message" value="" />
         <label>Created Date: </label>
         <input type="datetime-local" id="CommittedDate" />
         <label>Git Repository ID: </label>
-        <input type="number" id="GitRepositoryId" />
+        <input type="number" id="GitRepositoryId" value="" />
         <label>User ID: </label>
-        <input type="number" id="UserId" />
+        <input type="number" id="UserId" value="" />
         <button type="button" onclick="create()">Add Commit</button>
     </div>
     <br />
@@ -57,7 +59,6 @@
             </tr>
         </thead>
         <tbody id="commitTable">
-            <!-- User data will be inserted here -->
         </tbody>
     </table>
 

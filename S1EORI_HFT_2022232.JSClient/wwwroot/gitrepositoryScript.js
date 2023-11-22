@@ -8,6 +8,12 @@ let connection = null;
 getData();
 setupSignalR();
 
+function fillData() {
+    document.getElementById('Name').value = 'Repo neve'; 
+    document.getElementById('Visibility').value = 'public'; 
+    document.getElementById('CreatedDate').value = '2023-11-22T10:30'; 
+    document.getElementById('UserId').value = 3; 
+}
 
 function setupSignalR() {
     connection = new signalR.HubConnectionBuilder()

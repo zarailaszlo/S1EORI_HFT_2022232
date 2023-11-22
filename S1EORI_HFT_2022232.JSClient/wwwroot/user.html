@@ -8,25 +8,25 @@
 </head>
 <body>
     <button onclick="backtomain()" class="back-to-main-button">Back To Main Page</button>
-    <br />
-    <br />
-    <h1>User Page</h1>
+    <br /><br />
+    <h1>User Manager</h1>
     <div id="formdiv">
+    <button onclick="fillData()" class="test-data-button">Add test data</button>
         <h2>Add Form</h2>
         <br />
         <label>Username: </label>
-        <input type="text" id="Username" value="testUser" />
+        <input type="text" id="Username" value="" />
         <label>Password: </label>
         <div class="password-container">
-            <input type="password" id="Password" value="testPassword" />
+            <input type="password" id="Password" value="" />
             <button type="button" onclick="togglePassword()" class="toggle-password">Show/Hide</button>
         </div>
         <label>Full Name: </label>
-        <input type="text" id="FullName" value="Test User" />
+        <input type="text" id="FullName" value="" />
         <label>Email: </label>
-        <input type="text" id="Email" value="testuser@fuk.com" />
+        <input type="text" id="Email" value="" />
         <label>Age: </label>
-        <input type="number" id="Age" value="10" />
+        <input type="number" id="Age" value="" />
 
         <button type="button" onclick="create()">Add User</button>
     </div>
@@ -63,7 +63,6 @@
             </tr>
         </thead>
         <tbody id="userTable1">
-            <!-- User data will be inserted here -->
         </tbody>
     </table>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>

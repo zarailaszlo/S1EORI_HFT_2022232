@@ -8,7 +8,13 @@ let connection = null;
 getData(); 
 setupSignalR();
 
-
+function fillData() {
+    document.getElementById('Hash').value = 'qzhf812';
+    document.getElementById('Message').value = 'Ez egy teszt üzenet';
+    document.getElementById('CommittedDate').value = '2023-11-22T10:30';
+    document.getElementById('GitRepositoryId').value = 2;
+    document.getElementById('UserId').value = 3;
+}
 function setupSignalR() {
     connection = new signalR.HubConnectionBuilder()
         .withUrl('http://localhost:58986/hub')

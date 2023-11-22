@@ -18,7 +18,7 @@
     position: absolute;
     top: 10px;
     left: 10px;
-    width: 250px; /* Set a specific width */
+    width: 250px; 
 }
 
     .back-to-main-button:hover {
