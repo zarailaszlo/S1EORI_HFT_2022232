@@ -5,7 +5,7 @@
 let gitRepositories = [];
 let connection = null;
 
-getData(); // Call the function to get data from the server
+getData();
 setupSignalR();
 
 
@@ -44,16 +44,14 @@ async function start() {
 };
 
 async function getData() {
-    // Fetch user data
     await fetch('http://localhost:58986/gitRepository')
         .then(response => response.json())
         .then(data => {
-            gitRepositories = data; // Store data in the array
-            display('repositoryTable'); // Call display function for the first table
+            gitRepositories = data; 
+            display('repositoryTable'); 
         });
 }
 
-// Function to create table rows
 function createRow(gitRepositoryData) {
     return `
         <tr>
@@ -67,10 +65,9 @@ function createRow(gitRepositoryData) {
     `;
 }
 
-// Function to display data in a specified table
 function display(tableId) {
     const tableBody = document.getElementById(tableId);
-    tableBody.innerHTML = ''; // Clear existing data
+    tableBody.innerHTML = '';
     gitRepositories.forEach(user => {
         tableBody.innerHTML += createRow(user);
     });

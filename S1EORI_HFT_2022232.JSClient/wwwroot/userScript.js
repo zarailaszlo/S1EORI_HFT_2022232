@@ -5,7 +5,7 @@
 let users = []; 
 let connection = null;
 
-getData(); // Call the function to get data from the server
+getData(); 
 setupSignalR();
 
 
@@ -43,16 +43,13 @@ async function start() {
 };
 
 async function getData() {
-    // Fetch user data
     await fetch('http://localhost:58986/user')
         .then(response => response.json())
         .then(data => {
-            users = data; // Store data in the array
-            display('userTable1'); // Call display function for the first table
+            users = data;
+            display('userTable1'); 
         });
 }
-
-// Function to create table rows
 function createRow(userData) {
     return `
         <tr>
@@ -67,10 +64,9 @@ function createRow(userData) {
     `;
 }
 
-// Function to display data in a specified table
 function display(tableId) {
     const tableBody = document.getElementById(tableId);
-    tableBody.innerHTML = ''; // Clear existing data
+    tableBody.innerHTML = '';
     users.forEach(user => {
         tableBody.innerHTML += createRow(user);
     });
@@ -82,7 +78,6 @@ function togglePassword() {
     var passwordInput = document.getElementById('Password');
     var type = passwordInput.type === 'password' ? 'text' : 'password';
     passwordInput.type = type;
-    // Change button text accordingly
     this.textContent = type === 'password' ? 'Show Password' : 'Hide Password';
 }
 
