@@ -21,11 +21,17 @@
 
     .back-to-main-button:hover {
         opacity: 0.9;
+        background-color: #2196F3;
     }
 
     .back-to-main-button:focus {
         outline: none;
     }
+h1 {
+    font-family: 'Raleway',sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+}
 
 table {
     width: 100%;
@@ -44,7 +50,7 @@ th, td {
 th {
     background-color: #f2f2f2;
 }
-
+#updateFormDiv,
 #formdiv {
     width: 300px;
     margin: 0 auto;
@@ -54,13 +60,17 @@ th {
     background-color: #f9f9f9;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
+    #updateFormDiv label,
     #formdiv label {
         display: block;
         margin-bottom: 5px;
         font-weight: bold;
         color: #333;
     }
+
+    #updateFormDiv input[type="text"],
+    #updateFormDiv input[type="number"],
+    #updateFormDiv input[type="password"],
     #formdiv input[type="password"],
     #formdiv input[type="number"],
     #formdiv input[type="text"] {
@@ -83,6 +93,7 @@ th {
         cursor: pointer;
         width: 110px;
     }
+
     #formdiv .toggle-password {
         padding: 8px;
         background-color: #ddd;
@@ -95,6 +106,7 @@ th {
         background-color: #ccc;
     }
 
+    #updateFormDiv button,
     #formdiv button {
         width: 100%;
         padding: 10px;
@@ -105,9 +117,12 @@ th {
         font-size: 16px;
         cursor: pointer;
     }
+
+        #updateFormDiv button:hover,
         #formdiv button:hover {
             background-color: darkblue;
         }
+
 .password-container {
     display: flex;
     align-items: center;
@@ -117,47 +132,3 @@ table button {
     padding: 1px;
     margin: 5px;
 }
-
-
-#updateFormDiv {
-    width: 300px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-    #updateFormDiv label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
-        color: #333;
-    }
-
-    #updateFormDiv input[type="text"],
-    #updateFormDiv input[type="number"],
-    #updateFormDiv input[type="password"] {
-        width: 100%;
-        padding: 8px;
-        margin-bottom: 15px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-
-    #updateFormDiv button {
-        width: 100%;
-        padding: 10px;
-        background-color: #2196F3;
-        border: none;
-        border-radius: 4px;
-        color: white;
-        font-size: 16px;
-        cursor: pointer;
-    }
-
-        #updateFormDiv button:hover {
-            background-color: darkblue;
-        }

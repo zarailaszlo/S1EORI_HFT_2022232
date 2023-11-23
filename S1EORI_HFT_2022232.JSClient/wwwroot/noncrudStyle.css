@@ -23,6 +23,7 @@
 
     .back-to-main-button:hover {
         opacity: 0.9;
+        background-color: #b71c1c;
     }
 
     .back-to-main-button:focus {
