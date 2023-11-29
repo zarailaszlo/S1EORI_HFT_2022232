@@ -3,74 +3,55 @@
 }
 
 let noncrud = [];
-function hideElements() {
-    const elementIdsToHide = ['usersOlderThanResults', 'commitCountResults', 'repositoryStatsResults', 'groupedReposResults', 'usersWithZeroReposResults'];
-    document.getElementById('statisticsResults').style.display = 'block';
-    elementIdsToHide.forEach(id => {
-        const element = document.getElementById(id);
-        if (element) {
-            element.style.display = 'none';
-        }
-    });
-}
+document.getElementById('statisticsDone').style.display = 'block';
 
 async function ReadUsersOlderThan(age) {
-    hideElements();
     document.getElementById('statTitle').innerHTML =
         '<h2>Users Older Than ' + age + '</h2>';
-    document.getElementById('usersOlderThanResults').style.display = 'block';
     await fetch('http://localhost:58986/Stat/ReadUsersOlderThan?age=' + age)
         .then(x => x.json())
         .then(users => {
-            displayUsers(users, 'usersOlderThanResults');
+            displayUsers(users, 'statisticsDone');
             console.log(users) 
 
         });
 }
 async function GetCommitCountForRepository(repositoryId) {
-    hideElements();
     document.getElementById('statTitle').innerHTML =
         '<h2>Commit Count For Repository (id: ' + repositoryId + ')</h2>';
-    document.getElementById('commitCountResults').style.display = 'block';
     await fetch('http://localhost:58986/Stat/GetCommitCountForRepository?repositoryId=' + repositoryId)
         .then(x => x.json())
         .then(commitCount => {
-            displayCommitCount(commitCount, 'commitCountResults');
+            displayCommitCount(commitCount, 'statisticsDone');
         });
 }
 async function ReadRepositoryStats() {
-    hideElements();
     document.getElementById('statTitle').innerHTML =
         '<h2>Repository Stats</h2>';
-    document.getElementById('repositoryStatsResults').style.display = 'block';
     await fetch('http://localhost:58986/Stat/ReadRepositoryStats')
         .then(x => x.json())
         .then(stats => {
-            displayRepositoryStats(stats, 'repositoryStatsResults');
+            displayRepositoryStats(stats, 'statisticsDone');
         });
 }
 
 async function GroupRepositoriesByVisibility() {
-    hideElements();
     document.getElementById('statTitle').innerHTML =
         '<h2>Repositories By Visibility</h2>';
-    document.getElementById('groupedReposResults').style.display = 'block';
     await fetch('http://localhost:58986/Stat/GroupRepositoriesByVisibility')
         .then(x => x.json())
         .then(groupedStats => {
-            displayGroupedRepos(groupedStats, 'groupedReposResults');
+            displayGroupedRepos(groupedStats, 'statisticsDone');
         });
 }
 
 async function ReadUsersWithZeroRepositories() {
-    hideElements();
     document.getElementById('statTitle').innerHTML =
         '<h2>Users With Zero Repositories</h2>';
-    document.getElementById('usersWithZeroReposResults').style.display = 'block';
     await fetch('http://localhost:58986/Stat/ReadUsersWithZeroRepositories')
         .then(x => x.json())
         .then(users => {
-            displayUsersWithZeroRepos(users, 'usersWithZeroReposResults');
+            displayUsersWithZeroRepos(users, 'statisticsDone');
         });
 }
 
