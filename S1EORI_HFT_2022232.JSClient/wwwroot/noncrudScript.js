@@ -3,9 +3,11 @@
 }
 
 let noncrud = [];
-document.getElementById('statisticsDone').style.display = 'block';
+//document.getElementById('statisticsDone').style.display = 'block';
+//document.getElementById('statisticsResults').style.display = 'block';
 
 async function ReadUsersOlderThan(age) {
+    document.getElementById('statisticsResults').style.display = 'block';
     document.getElementById('statTitle').innerHTML =
         '<h2>Users Older Than ' + age + '</h2>';
     await fetch('http://localhost:58986/Stat/ReadUsersOlderThan?age=' + age)
@@ -17,6 +19,7 @@ async function ReadUsersOlderThan(age) {
         });
 }
 async function GetCommitCountForRepository(repositoryId) {
+    document.getElementById('statisticsResults').style.display = 'block';
     document.getElementById('statTitle').innerHTML =
         '<h2>Commit Count For Repository (id: ' + repositoryId + ')</h2>';
     await fetch('http://localhost:58986/Stat/GetCommitCountForRepository?repositoryId=' + repositoryId)
@@ -26,6 +29,7 @@ async function GetCommitCountForRepository(repositoryId) {
         });
 }
 async function ReadRepositoryStats() {
+    document.getElementById('statisticsResults').style.display = 'block';
     document.getElementById('statTitle').innerHTML =
         '<h2>Repository Stats</h2>';
     await fetch('http://localhost:58986/Stat/ReadRepositoryStats')
@@ -36,6 +40,7 @@ async function ReadRepositoryStats() {
 }
 
 async function GroupRepositoriesByVisibility() {
+    document.getElementById('statisticsResults').style.display = 'block';
     document.getElementById('statTitle').innerHTML =
         '<h2>Repositories By Visibility</h2>';
     await fetch('http://localhost:58986/Stat/GroupRepositoriesByVisibility')
@@ -46,6 +51,7 @@ async function GroupRepositoriesByVisibility() {
 }
 
 async function ReadUsersWithZeroRepositories() {
+    document.getElementById('statisticsResults').style.display = 'block';
     document.getElementById('statTitle').innerHTML =
         '<h2>Users With Zero Repositories</h2>';
     await fetch('http://localhost:58986/Stat/ReadUsersWithZeroRepositories')
