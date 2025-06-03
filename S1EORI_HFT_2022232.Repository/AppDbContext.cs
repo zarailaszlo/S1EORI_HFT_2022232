@@ -7,7 +7,7 @@ namespace S1EORI_HFT_2022232.Repository
     public class AppDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
-        public DbSet<GitRepository> GitRepositorys { get; set; }
+        public DbSet<GitRepository> GitRepositories { get; set; }
         public DbSet<Commit> Commits { get; set; }
         public AppDbContext()
         {
