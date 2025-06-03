@@ -16,7 +16,7 @@ namespace S1EORI_HFT_2022232.Repository.ModelsRepository
 
         public override GitRepository Read(int id)
         {
-            return _context.GitRepositorys.FirstOrDefault(e => e.IdGitRepository == id);
+            return _context.GitRepositories.FirstOrDefault(e => e.IdGitRepository == id);
 
         }
         public override void Update(GitRepository item)
