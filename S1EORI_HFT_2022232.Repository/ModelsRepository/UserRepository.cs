@@ -37,7 +37,7 @@ namespace S1EORI_HFT_2022232.Repository.ModelsRepository
 
             _context.SaveChanges();
         }
-        //Erre hibát dob
+        // This implementation throws an error
         //public override void Update(User item)
         //{
         //    User old = Read(item.IdUser);
