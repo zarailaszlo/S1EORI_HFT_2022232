@@ -36,7 +36,7 @@ namespace S1EORI_HFT_2022232.Repository.ModelsRepository
 
             _context.SaveChanges();
         }
-        //ez nem működik
+        // This version does not work
         //public override void Update(GitRepository item)
         //{
         //    GitRepository old = Read(item.IdGitRepository);
